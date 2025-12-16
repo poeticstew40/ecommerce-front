@@ -1,0 +1,195 @@
+/* =========================================
+   CONTENEDORES PRINCIPALES
+   ========================================= */
+
+.main-home-contenedor {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* FIX MARGEN: Reducido de 50px a 10px para acercar productos al banner */
+    margin-top: 10px; 
+    min-height: 100vh;
+    padding: 0 20px;
+    box-sizing: border-box; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-catalogo {
+    max-width: 1270px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    .main-home-contenedor {
+        margin-top: 10px;
+        padding: 0 15px;
+    }
+}
+
+/* =========================================
+   GRILLA DE PRODUCTOS
+   ========================================= */
+
+.grid-home-prod {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 30px;
+    /* FIX MARGEN: Reducido margen superior a 20px */
+    margin: 20px auto 40px auto; 
+    align-items: flex-start;
+}
+
+/* =========================================
+   TARJETA DE PRODUCTO (CARD)
+   ========================================= */
+
+.prod-home-container {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    /* RESPONSIVE CARD WIDTH */
+    width: 300px; 
+    max-width: 100%;
+    
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.prod-home-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    border-color: var(--green-650);
+}
+
+/* --- IMAGEN --- */
+.prod-home-image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain; 
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+/* --- TÍTULO --- */
+.prod-home-nombre {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-gray-2);
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.6em; 
+}
+
+/* --- PRECIO Y STOCK --- */
+.prod-home-precio {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--green-650);
+    margin: 5px 0;
+}
+
+.prod-home-stock {
+    font-size: 0.9rem;
+    color: var(--text-gray-4);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* --- DESCRIPCIÓN --- */
+.prod-home-descripcion {
+    font-size: 0.9rem;
+    color: var(--text-gray-5);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    min-height: 60px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    flex-grow: 1;
+}
+
+/* --- BOTÓN --- */
+.prod-home-btn-carrito {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--green-650);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.prod-home-btn-carrito:hover {
+    background-color: var(--green-800);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.prod-home-btn-carrito:active {
+    transform: scale(0.98);
+}
+
+.prod-home-btn-carrito.agregado {
+    background-color: var(--green-800);
+    cursor: default;
+    transform: none;
+}
+
+/* ==================================  RESPONSIVE  =========================================================== */
+
+@media screen and (max-width: 768px) {
+    .grid-home-prod {
+        gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr; 
+        justify-items: center;
+        /* En móvil reducimos aún más el margen entre items */
+        margin-top: 10px;
+    }
+
+    .prod-home-container {
+        width: 100%; 
+        max-width: 400px;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 900px) {
+    .grid-home-prod {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .prod-home-container {
+        width: 100%;
+    }
+}

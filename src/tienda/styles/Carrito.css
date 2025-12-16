@@ -1,0 +1,288 @@
+.main-carrito {
+    margin: 0px auto;
+    padding: 20px;
+    max-width: 1270px;
+    display: flex;
+    gap: 30px;
+    /* RESPONSIVE: Envolver si no hay espacio */
+    flex-wrap: wrap; 
+}
+
+.items-cart-cont {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
+
+.items-cart {
+    background-color: #fff;
+    border: var(--border-width-sm) solid var(--border-color-dark);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    height: 140px;
+    display: flex;
+    gap: 10px;
+    transition: var(--transition-normal);
+    overflow: hidden; /* Evitar desbordes */
+}
+
+.items-cart:hover{
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Imagenes de los productos en el carrito */
+.items-cart img {
+    margin: 10px 0px 10px 5px;
+    padding: 0;
+    width: 120px; /* Reducido un poco */
+    height: 120px;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    align-self: center;
+    flex-shrink: 0; /* Evitar que se aplaste */
+} 
+
+/* Productos en el carrito */
+.prod-cart-container {
+    margin: 10px 10px 10px 5px;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-width: 0; /* Permite que el texto se trunque si es necesario */
+}
+
+/* Datos del producto en el carrito */
+.prod-cart-nombre, .prod-cart-cantidad, .prod-cart-precio, .prod-cart-subtotal {
+    margin: 0;
+    padding: 0;
+}
+
+.prod-cart-data-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.prod-cart-data-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: end;
+    margin-left: 10px;
+}
+
+.prod-cart-nombre {
+    font-size: var(--font-size-lg); /* Un poco más chico para móvil */
+    font-weight: 600;
+    color: var(--text-gray-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.prod-cart-precio {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--green-800);
+}
+
+.prod-cart-subtotal {
+    font-size: var(--font-size-base);
+    color: var(--text-gray-3);
+}
+
+/* ------------------ Controles de cantidad -------------------------- */
+.cantidad-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cantidad-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-gray-2);
+    font-weight: 500;
+    margin: 0;
+}
+
+.cantidad-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: fit-content;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.cantidad-btn {
+    background-color: var(--green-650);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.prod-cart-cantidad-input {
+    width: 45px;
+    height: 32px;
+    border: none;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    text-align: center;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0;
+    margin: 0;
+}
+
+/* ----------------------------Seccion Confirmar compra---------------------------- */
+.cart-confirm {
+    background-color: #fff;
+    border: var(--border-width-sm) solid var(--border-color-dark);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    width: 28%; /* Ancho fijo para desktop */
+    padding: 25px;
+    gap: 15px;
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.cart-confirm h2 {
+    margin: 0 0 20px 0;
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    border-bottom: var(--border-width-sm) solid var(--border-color-dark);
+}
+
+.cart-item-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-item-summary-name {
+    flex: 1;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.cart-item-summary-price {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #333;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.cart-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: var(--green-650);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.cart-btn:hover {
+    background-color: var(--green-800);
+    transform: scale(1.02);
+}
+
+/* ==================================  RESPONSIVE  =========================================================== */
+
+@media screen and (max-width: 900px) {
+    .main-carrito {
+        flex-direction: column; /* Apilar verticalmente */
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .items-cart-cont {
+        width: 100%; /* Ocupar todo el ancho */
+    }
+
+    .cart-confirm {
+        width: 100%; /* Ocupar todo el ancho */
+        order: -1; /* Opcional: Si quieres que el resumen aparezca ARRIBA en móviles, descomenta esto. Si no, déjalo comentado */
+        /* order: 2; */
+    }
+    
+    .items-cart {
+        height: auto; /* Altura flexible */
+        flex-direction: row;
+        padding: 10px;
+        align-items: center;
+    }
+    
+    .items-cart img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .prod-cart-precio {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .items-cart {
+        flex-direction: column; /* Apilar imagen y datos en pantallas MUY chicas */
+        height: auto;
+        text-align: center;
+        padding-bottom: 15px;
+    }
+    
+    .prod-cart-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .prod-cart-data-right {
+        align-items: center;
+        margin: 0;
+    }
+    
+    .cantidad-controls {
+        align-items: center;
+    }
+    
+    /* Ajuste para el botón de eliminar (basura) */
+    .items-cart > button { 
+        width: 100%;
+        border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg) !important;
+    }
+}

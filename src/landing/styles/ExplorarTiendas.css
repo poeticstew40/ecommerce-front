@@ -1,0 +1,318 @@
+.explorar-page {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+    font-family: var(--font-family-Teachers);
+}
+
+.explorar-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.explorar-hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.explorar-title {
+    color: var(--text-gray-1);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+.explorar-subtitle {
+    color: var(--text-gray-4);
+    font-size: 1.1rem;
+}
+
+/* Grid */
+.tiendas-grid {
+    /* border: 3px solid red; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tienda-card {
+    background: white;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 320px; /* Altura fija para uniformidad */
+}
+
+.tienda-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.tienda-card-banner {
+    max-height: 100px;
+    height: 100px;
+    background-color: var(--gray-200);
+    overflow: hidden;
+}
+
+.tienda-card-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-blue-soft);
+}
+
+.tienda-card-content {
+    padding: 20px;
+    padding-top: 40px;
+    position: relative;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tienda-logo-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tienda-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
+
+.tienda-nombre {
+    margin: 10px 0 5px 0;
+    color: var(--text-gray-1);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.tienda-desc {
+    color: var(--text-gray-4);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.btn-visitar {
+    background-color: var(--blue-600);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.tienda-card:hover .btn-visitar {
+    background-color: var(--blue-700);
+}
+
+.explorar-loading, .explorar-error, .explorar-empty {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: var(--text-gray-4);
+}
+
+.btn-crear {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: var(--blue-600);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ============================== RESPONSIVE ============================== */
+
+/*-----seccion RESPONSIVA CONTENEDOR-------*/
+@media (max-width: 768px) {
+    .explorar-main {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .explorar-main {
+        padding: 20px 10px;
+    }
+}
+
+/*-----seccion RESPONSIVA HERO-------*/
+@media (max-width: 768px) {
+    .explorar-hero {
+        margin-bottom: 30px;
+    }
+    
+    .explorar-title {
+        font-size: 2rem;
+    }
+    
+    .explorar-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .explorar-title {
+        font-size: 1.5rem;
+    }
+    
+    .explorar-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/*-----seccion RESPONSIVA GRID-------*/
+
+@media (max-width: 768px) {
+    .tiendas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tiendas-grid {
+        margin: 0px 10px 10px 10px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+/*-----seccion RESPONSIVA HEADER MOBILE-------*/
+@media (max-width: 480px) {
+    .landing-header-mobile {
+        display: block !important;
+        padding: var(--padding-md);
+        background-color: var(--bg-light-primary);
+        position: sticky;
+        top: 0;
+        z-index: var(--z-sticky);
+    }
+    
+    .btn-primary-header, .landing-nav-link-mobile {
+        display: none !important;
+    }
+    
+    .btn-primary-header-mobile, 
+    .btn-secondary-header-mobile, 
+    .btn-logout-mobile {
+        width: 170px;
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+    }
+}   
+
+/*-----seccion RESPONSIVA TARJETAS-------*/
+@media (max-width: 768px) {
+    .tienda-card {
+        height: auto;
+        min-height: 280px;
+    }
+    
+    .tienda-card-content {
+        padding: 15px;
+        padding-top: 35px;
+    }
+    
+    .tienda-logo-wrapper {
+        width: 70px;
+        height: 70px;
+        top: -35px;
+    }
+    
+    .tienda-nombre {
+        font-size: 1.1rem;
+    }
+    
+    .tienda-desc {
+        font-size: 0.85rem;
+    }
+    
+    .btn-visitar {
+        padding: 6px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tienda-card {
+        min-height: 260px;
+    }
+    
+    .tienda-card-banner {
+        max-height: 80px;
+        height: 80px;
+    }
+    
+    .tienda-card-content {
+        padding: 12px;
+        padding-top: 30px;
+    }
+    
+    .tienda-logo-wrapper {
+        width: 60px;
+        height: 60px;
+        top: -30px;
+    }
+    
+    .tienda-nombre {
+        font-size: 1rem;
+        margin: 8px 0 4px 0;
+    }
+    
+    .tienda-desc {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .btn-visitar {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-crear {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/*-----seccion RESPONSIVA MENSAJES-------*/
+@media (max-width: 768px) {
+    .explorar-loading, 
+    .explorar-error, 
+    .explorar-empty {
+        padding: 30px 15px;
+        font-size: 1rem;
+    }
+}

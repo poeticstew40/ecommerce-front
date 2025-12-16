@@ -1,0 +1,751 @@
+.main-login-tienda {
+    margin: 0 auto;
+    background: var(--gradient-green-soft-2);
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 50px 0px 50px 0px;
+}
+
+.input-box-tienda input:focus + label,
+.input-box-tienda input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--green-600);
+}
+
+.input-box-tienda input:focus ~ .icon {
+    color: var(--green-600);
+}
+
+.password-forgot-tienda {
+    color: var(--green-600);
+    position: relative;
+    display: block;
+    width:100%;
+    margin-bottom: var(--margin-sm);
+    right: 0;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    transition: var(--main-transition-fast);
+    text-align: center;
+    margin-top: var(--margin-md);
+    text-decoration: none;
+}
+.password-forgot-tienda:hover {
+    color: var(--green-800);
+    text-decoration: underline;
+}
+
+.submit-button-contenedor-tienda button { 
+    background: var(--green-800);
+    color: var(--text-white);
+    width: 100%;
+    margin-bottom: var(--margin-sm);
+    padding: 12px 28px;
+    border-radius: var(--border-radius-full);
+    border: none;
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    font-size:var(--font-size-base);
+    box-shadow: var(--shadow-green);
+    transition: var(--margin-transition-normal);
+}
+.submit-button-contenedor-tienda button:hover {
+    background: var(--green-500);
+    transform: translateY(-2px);
+    box-shadow:var(--shadow-blue);
+}
+
+.container-welcome-tienda {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 2; /* por debajo de los formularios */
+    overflow: hidden;
+    background: var(--gradient-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+    border-top-right-radius: var(--border-radius-2xl);
+    border-bottom-right-radius: var(--border-radius-2xl);
+}
+
+.welcome-panel-tienda p { 
+    margin: 0 0 var(--margin-xl) 0; 
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--green-50);
+}
+
+.welcome-btn-tienda:hover {
+    background: var(--white);
+    color: var(--green-600);
+}
+
+@media (max-width: 880px) {    
+    .mobile-toggle-btn-tienda {
+        display: block !important;
+        width: 100%;
+        max-width: 500px;
+        margin: 0;
+        padding: 12px 36px;
+        border-radius: var(--border-radius-full);
+        border: 2px solid var(--green-600);
+        background: transparent;
+        color: var(--green-600);
+        cursor: pointer;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-base);
+        transition: var(--main-transition-fast);
+        position: relative;
+        z-index: 10;
+    }
+
+    .mobile-toggle-btn-tienda:hover {
+        background: var(--green-600);
+        color: var(--text-white);
+    
+    }
+}
+
+
+
+
+/* ------------------- contenedor principal ------------------- */
+.main-login-landing {
+    margin: 0 auto;
+    background: var(--gradient-blue-vertical-soft-2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 50px 0px 50px 0px;
+}
+
+
+.all-login-container {
+    /* border: 2px solid red; */
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+    max-height: 700px;
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: var(--border-radius-2xl);
+    box-shadow: var(--shadow-2xl);
+    background: var(--bg-light-primary); 
+}
+
+/* En móviles: permitir que el contenedor se expanda cuando está en modo registro */
+@media (max-width: 880px) {
+    .all-login-container {
+        overflow: visible;
+    }
+    
+    .all-login-container.active {
+        overflow: visible;
+        max-height: none !important;
+    }
+}
+
+/* --- cajas de formulario (posicionadas) --- */
+.login-box, .register-box {
+    /* border: 2px solid blue; */
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1), opacity var(--transition-slow);
+    z-index: 3; /* formularios encima del panel de bienvenida */
+    background-color: var(--bg-light-primary);
+}
+
+/* En móviles: sin animación, solo mostrar/ocultar */
+@media (max-width: 880px) {
+    .login-box, .register-box {
+        transition: none;
+    }
+}
+
+/* login a la izquierda por defecto */
+.login-box {
+    /* border: 2px solid green;     */
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* registro "fuera" a la derecha por defecto */
+.register-box {
+    /* border: 2px solid yellow; */
+    right: 0;
+    transform: translateX(100%);
+    opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: flex-start;
+    padding: var(--padding-lg) 0;
+}
+
+/* --- cuando estamos en modo registro: login se va a la izquierda y registro entra --- */
+.all-login-container.active .login-box {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none; /* evita que el formulario oculto reciba clicks */
+}
+
+.all-login-container.active .register-box {
+    transform: translateX(0%);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* En móviles: sin animación, solo mostrar/ocultar */
+@media (max-width: 880px) {
+    /* Por defecto, solo mostrar login-box */
+    .login-box {
+        display: flex !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    
+    .register-box {
+        display: none !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    
+    /* Cuando está activo (modo registro), mostrar register-box y ocultar login-box */
+    .all-login-container.active .login-box {
+        display: none !important;
+    }
+    
+    .all-login-container.active .register-box {
+        display: flex !important;
+    }
+    
+    /* Cuando NO está activo (modo login), mostrar login-box y ocultar register-box */
+    .all-login-container:not(.active) .login-box {
+        display: flex !important;
+    }
+    
+    .all-login-container:not(.active) .register-box {
+        display: none !important;
+    }
+}
+
+/* --- form interno --- */
+.all-login-container form {
+    width: 80%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+/* En móviles: formulario de registro ocupa todo el espacio disponible */
+@media (max-width: 880px) {
+    .all-login-container.active form,
+    .register-box form {
+        width: 90%;
+        max-width: 100%;
+    }
+}
+
+.all-login-container h2 {
+    /*margin: 0 0 12px 0;*/
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--margin-lg);
+    color: var(--text-gray-1);
+    text-align: center;
+}
+
+/* --- inputs --- */
+.input-box, .input-box-tienda {
+    width: 100%;
+    margin-bottom: var(--margin-lg);
+    position: relative;
+    border-bottom: 1px solid var(--gray-400);
+}
+
+.input-box input, .input-box-tienda input {
+    width: 100%;
+    height: 42px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-gray-1);
+    padding: 0 46px 0 6px;
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+}
+
+.input-box label, .input-box-tienda label {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--font-size-sm);
+    color: var(--text-gray-3);
+    pointer-events: none;
+    transition: var(--main-transition-fast);
+}
+
+.input-box input:focus + label,
+.input-box input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--blue-600);
+}
+
+.input-box input:focus ~ .icon {
+    color: var(--blue-600);
+}
+
+/* icon */
+.input-box .icon, .input-box-tienda .icon {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-gray-4);
+    font-size: var(--icon-size-md);
+    transition: var(--main-transition-fast);
+}
+
+
+/* Mostrar contraseña */
+.password-details {
+    color: var(--text-gray-2);
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+    align-items: center;
+    margin-bottom: var(--margin);
+}
+
+.password-details label {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    cursor: pointer;
+}
+
+/* Recuperar contraseña */
+.password-forgot {
+    color: var(--blue-600);
+    position: relative;
+    display: block;
+    width:100%;
+    margin-bottom: var(--margin-sm);
+    right: 0;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    transition: var(--main-transition-fast);
+    text-align: center;
+    margin-top: var(--margin-md);
+    text-decoration: none;
+}
+.password-forgot:hover {
+    color: var(--blue-800);
+    text-decoration: underline;
+}
+
+/* --- botones --- */
+.submit-button-contenedor, .submit-button-contenedor-tienda { 
+    margin-top: var(--margin-md); 
+}
+
+.submit-button-contenedor button { 
+    background: var(--blue-800);
+    color: var(--text-white);
+    width: 100%;
+    margin-bottom: var(--margin-sm);
+    padding: 12px 28px;
+    border-radius: var(--border-radius-full);
+    border: none;
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    font-size:var(--font-size-base);
+    box-shadow: var(--shadow-blue);
+    transition: var(--margin-transition-normal);
+}
+.submit-button-contenedor button:hover {
+    background: var(--blue-500);
+    transform: translateY(-2px);
+    box-shadow:var(--shadow-blue);
+}
+
+.submit-button-contenedor button:disabled, .submit-button-contenedor-tienda button:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- panel de bienvenida (ocupa la mitad derecha inicialmente) --- */
+.container-welcome {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 2; /* por debajo de los formularios */
+    overflow: hidden;
+    background: var(--gradient-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+    border-top-right-radius: var(--border-radius-2xl);
+    border-bottom-right-radius: var(--border-radius-2xl);
+}
+
+/* mover panel de bienvenida a la izquierda cuando active */
+.all-login-container.active .container-welcome, .all-login-container.active .container-welcome-tienda {
+    transform: translateX(-100%);
+    border-radius: var(--border-radius-2xl) 0 0 var(--border-radius-2xl);
+}
+
+/* --- paneles internos de bienvenida --- */
+.welcome-panel, .welcome-panel-tienda {
+    position: absolute;
+    width: 100%;
+    padding: var(--padding-xl);
+    text-align: center;
+    color: var(--text-white);
+    transition: opacity .45s ease, transform .45s ease;
+    pointer-events: none; /* por defecto no reciben clicks */
+}
+
+/* welcome-register está visible por defecto */
+.welcome-register {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto; /* el que está visible acepta clics */
+}
+
+/* welcome-login está oculto por defecto (se hara visible en active) */
+.welcome-login {
+    transform: translateX(-20%);
+    opacity: 0;
+    /*pointer-events: none;*/
+}
+
+/* cuando active: invertimos visibilidad */
+.all-login-container.active 
+.welcome-register {
+    transform: translateX(20%);
+    opacity: 0;
+    /*pointer-events: none;*/
+}
+
+.all-login-container.active .welcome-login {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- pequeños ajustes visuales --- */
+.welcome-panel h2, .welcome-panel-tienda h2 { 
+    margin-bottom: var(--margin-md); 
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--white);
+}
+
+.welcome-panel p { 
+    margin: 0 0 var(--margin-xl) 0; 
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--blue-50);
+
+}
+
+
+/* Botón "Ghost" (Transparente) dentro del panel */
+.welcome-btn, .welcome-btn-tienda {
+    padding: 10px 36px;
+    border-radius: var(--border-radius-full);
+    border: 2px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+    transition: var(--main-transition-fast);
+}
+
+.welcome-btn:hover {
+    background: var(--white);
+    color: var(--blue-600);
+}
+
+/* Botón móvil para cambiar entre login y registro (oculto por defecto) */
+.mobile-toggle-btn-container {
+    display: none;
+}
+
+.mobile-toggle-btn, .mobile-toggle-btn-tienda {
+    display: none;
+}
+
+.mobile-toggle-text {
+    display: none;
+}
+
+/* ============================== RESPONSIVE ============================== */
+
+/*-----seccion RESPONSIVA CONTENEDOR-------*/
+@media (max-width: 880px) {
+    .mobile-toggle-text {
+        display: block;
+    }
+
+    .main-login-landing, .main-login-tienda {
+        padding: var(--padding-md);
+    }
+
+    .landing-nav-link {
+        display: none !important;
+    }
+
+    .all-login-container {
+        height: auto;
+        padding: var(--padding-xl) var(--padding-md);
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-logo-login {
+        /* border: 3px solid red; */
+        font-size: var(--font-size-md);
+    }
+    .landing-nav-login {
+        display: none !important;
+    }
+
+    .landing-nav-link-login {
+        display: none !important;
+    }
+
+    .btn-primary-login {
+        width: 110px;
+        text-align: center;
+    }
+
+    .main-login-landing, .main-login-tienda {
+        padding: var(--padding-sm);
+    }
+    
+    .all-login-container {
+        padding: var(--padding-lg) var(--padding-sm);
+        border-radius: var(--border-radius-lg);
+    }
+}
+
+/*-----seccion RESPONSIVA FORMULARIOS-------*/
+@media (max-width: 880px) {
+    .main-login-landing, .main-login-tienda {
+        flex-flow: column nowrap;
+        height: auto;
+        min-height: calc(100vh - 140px); /* Restar altura del header y footer */
+        align-items: flex-start;
+        padding: 80px 0 60px 0; /* Espacio para header arriba y footer abajo */
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .all-login-container {
+        /* border: 2px solid red; */
+        display: flex;
+        flex-direction: column nowrap;
+        position: relative;
+        margin: 20px auto;
+        margin-bottom: var(--margin-md);
+        height: auto;
+        min-height: 500px;
+        max-width: 600px;
+        width: calc(100% - 40px);
+    }
+    
+    /* Cuando está en modo registro, expandir completamente */
+    .all-login-container.active {
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        margin-bottom: var(--margin-md);
+    }
+    
+    .login-box,
+    .register-box {
+        width: 100% !important;
+        position: relative !important;
+        height: auto !important;
+        min-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: flex-start;
+        padding: var(--padding-lg) 0;
+        flex: 1;
+    }
+    
+    .input-box, .input-box-tienda {
+        /* border: 2px solid red; */
+        font-size: var(--font-size-sm);
+        margin-top: var(--margin-lg);
+    }
+    
+    /* Asegurar que solo se muestre un formulario a la vez */
+    .all-login-container.active .login-box {
+        display: none !important;
+    }
+    
+    .all-login-container.active .register-box {
+        display: flex !important;
+    }
+    
+    .all-login-container:not(.active) .login-box {
+        display: flex !important;
+    }
+    
+    .all-login-container:not(.active) .register-box {
+        display: none !important;
+    }
+    
+    .all-login-container h2 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .submit-button-contenedor button, .submit-button-contenedor-tienda button {
+        padding: 14px 28px;
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 880px) {
+        /* --------------------------------- Botón móvil para cambiar entre login y registro (fuera del contenedor) --------------------------------- */
+    .mobile-toggle-btn-container {
+        /* border: 1px solid red;    */
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: var(--margin-md);
+        gap: var(--gap-sm);
+    }
+    
+    .mobile-toggle-text {
+        text-align: center;
+        color: var(--text-gray-2);
+        font-size: var(--font-size-base);
+        margin: 0;
+        padding: 0 var(--padding-md);
+    }
+
+    .mobile-toggle-btn {
+        display: block !important;
+        width: 100%;
+        max-width: 500px;
+        margin: 0;
+        padding: 12px 36px;
+        border-radius: var(--border-radius-full);
+        border: 2px solid var(--blue-600);
+        background: transparent;
+        color: var(--blue-600);
+        cursor: pointer;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-base);
+        transition: var(--main-transition-fast);
+        position: relative;
+        z-index: 10;
+    }
+    
+    .mobile-toggle-btn:hover {
+        background: var(--blue-600);
+        color: var(--text-white);
+    }
+    /* ---------------------------------FIN DEL BOTON MOVIL --------------------------------- */
+}
+
+
+
+/* --------------------------------- RESPONSIVA FORMULARIOS --------------------------------- */
+/* Entre 550px y 880px: mantener márgenes */
+@media (min-width: 551px) and (max-width: 880px) {
+    .all-login-container {
+        max-width: 600px;
+        width: calc(100% - 40px);
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .all-login-container {
+        /* border: 2px solid red; */
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .all-login-container h2 {
+        /* border: 2px solid rgb(0, 255, 213); */
+        font-size: var(--font-size-3xl);
+        margin: 0px 0px 20px 0px;
+    }
+    
+    .input-box input, .input-box-tienda input {
+        height: 40px;
+        font-size: var(--font-size-sm);
+    }
+    
+    .input-box label, .input-box-tienda label {
+        font-size: var(--font-size-sm);
+    }
+    
+    .password-details {
+        font-size: var(--font-size-xs);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--gap-xs);
+    }
+    
+    .password-forgot, .password-forgot-tienda {
+        font-size: var(--font-size-xs);
+        margin-top: var(--margin-lg);
+    }
+}
+
+/*-----seccion RESPONSIVA PANEL BIENVENIDA-------*/
+@media (max-width: 880px) {
+    .container-welcome, .container-welcome-tienda {
+        display: none;
+    }
+}

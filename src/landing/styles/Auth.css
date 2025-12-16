@@ -1,0 +1,257 @@
+/* src/landing/styles/Auth.css */
+
+/* --- 1. FONDO Y CONTENEDOR --- */
+.auth-container {
+    /* border: 2px solid red; */
+    margin: 0 auto;
+    background: var(--gradient-sky, linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)); 
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family, 'Segoe UI', sans-serif);
+}
+
+/* --- 2. TARJETA --- */
+.auth-card {
+    background-color: var(--bg-light-primary, #ffffff);
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: var(--border-radius-2xl, 20px);
+    box-shadow: var(--shadow-2xl, 0 25px 50px -12px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+}
+
+/* --- 3. TEXTOS --- */
+.auth-title {
+    font-size: var(--font-size-3xl, 1.8rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--text-gray-1, #1f2937);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-gray-3, #6b7280);
+    font-size: var(--font-size-sm, 0.9rem);
+    margin-bottom: 30px;
+}
+
+/* --- 4. INPUTS --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-radius: 8px;
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-gray-1, #1f2937);
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
+}
+
+.form-input:focus {
+    border-color: var(--blue-600, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--text-gray-4, #9ca3af);
+}
+
+/* --- 5. BOTONES --- */
+.btn-primary-auth {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 28px;
+    background: var(--blue-800, #1e40af);
+    color: var(--text-white, #ffffff);
+    border-radius: var(--border-radius-full, 9999px);
+    border: none;
+    cursor: pointer;
+    font-weight: var(--font-weight-bold, 700);
+    font-size: var(--font-size-base, 1rem);
+    box-shadow: var(--shadow-blue, 0 4px 6px -1px rgba(30, 64, 175, 0.3));
+    transition: all 0.3s ease;
+}
+
+
+.btn-primary-auth:hover {
+    background: var(--blue-500, #3b82f6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.4);
+}
+
+
+.btn-primary-auth:disabled {
+    background: var(--gray-400, #9ca3af);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- 6. LINKS Y FOOTER --- */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-link {
+    color: var(--blue-600, #2563eb);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.auth-link:hover {
+    color: var(--blue-800, #1e3a8a);
+    text-decoration: underline;
+}
+
+/* --- 7. MENSAJES DE ESTADO --- */
+.msg-box {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.5s ease;
+}
+
+.msg-success {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.msg-error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* Eliminar flechas en inputs numéricos */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================== RESPONSIVE ============================== */
+
+/*-----seccion RESPONSIVA CONTENEDOR-------*/
+@media (max-width: 768px) {
+    .auth-container {
+        padding: var(--padding-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: var(--padding-sm);
+        align-items: flex-start;
+        padding-top: var(--padding-lg);
+    }
+}
+
+/*-----seccion RESPONSIVA TARJETA-------*/
+@media (max-width: 768px) {
+    .auth-card {
+        width: 100%;
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 25px 15px;
+        border-radius: var(--border-radius-lg);
+    }
+}
+
+/*-----seccion RESPONSIVA TEXTOS-------*/
+@media (max-width: 768px) {
+    .auth-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .auth-subtitle {
+        font-size: var(--font-size-xs);
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-title {
+        font-size: var(--font-size-xl);
+        margin-bottom: 8px;
+    }
+    
+    .auth-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+    }
+}
+
+/*-----seccion RESPONSIVA INPUTS-------*/
+@media (max-width: 768px) {
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-input {
+        padding: 10px 12px;
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .form-input {
+        padding: 10px;
+    }
+}
+
+/*-----seccion RESPONSIVA BOTONES-------*/
+@media (max-width: 768px) {
+    .btn-primary-auth {
+        padding: 12px 20px;
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-primary-auth {
+        padding: 14px 20px;
+    }
+}
+
+/*-----seccion RESPONSIVA MENSAJES-------*/
+@media (max-width: 768px) {
+    .msg-box {
+        padding: 12px;
+        font-size: var(--font-size-xs);
+    }
+}

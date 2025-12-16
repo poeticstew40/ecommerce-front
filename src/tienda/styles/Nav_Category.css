@@ -1,0 +1,171 @@
+.main-nav {
+    background-color: var(--green-650);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: var(--gap-md);
+    position: relative; /* Necesario para posicionamiento absoluto */
+}
+
+.nav-cont-categ {
+    background-color: var(--green-650);
+    width: 100%;
+    max-width: 1270px;
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+    margin: 0;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+    color: white;
+    font-weight: 500;
+    font-family: var(--font-family-Teachers);
+    height: 50px; /* Altura fija para la barra */
+}
+
+/* Contenedor de categorías visibles en desktop */
+.desktop-categories {
+    display: flex;
+    gap: 10px;
+    overflow: hidden; /* Evita desbordes */
+}
+
+.categoria-link {
+    text-decoration: none;
+}
+
+.categoria-item {
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    color: #fff;
+    padding: 7px 15px;
+    white-space: nowrap;
+    transition: var(--transition-normal);
+}
+
+.categoria-item:hover {
+    background-color: rgba(71, 150, 89, 0.7);
+}
+
+/* ===================================  MENU DESPLEGABLE  ========================================= */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border-radius: var(--border-radius);
+    height: 100%;
+}
+
+.faBar-icon {
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    margin: 0;
+    background-color: var(--green-650);
+    color: #fff;
+    gap: var(--gap-xs);    
+    padding: 7px 15px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    user-select: none; /* Evita selección de texto al hacer clic rápido */
+    font-weight: 600;
+}
+
+.nav-menu:hover .faBar-icon, 
+.faBar-icon:active {
+    background-color: rgba(71, 150, 89, 0.6);
+}
+
+/* Overlay invisible para detectar clics fuera del menú */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 999; /* Justo debajo del menú */
+}
+
+/* Estilos para el menú desplegable */
+.menu-desplegable {
+    background-color: rgb(124, 202, 142); /* Color base verde claro */
+    position: absolute;
+    top: 100%; /* Justo debajo del botón */
+    left: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    min-width: 220px;
+    z-index: 1000; /* Encima de todo */
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+
+.menu-item {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    background-color: rgb(193, 200, 193);
+    color: rgb(0, 0, 0);
+    border-left: 3px solid rgb(32, 105, 67);
+}
+
+/* Primera opción "Todas las categorías" */
+.menu-desplegable .menu-item:first-child {
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.categoria {
+    font-weight: 500;
+}
+
+.menu-error {
+    padding: 12px 16px;
+    color: red;
+    font-size: 0.9em;
+}
+
+/* ==================================  RESPONSIVE  =========================================================== */
+
+/* En tablets y móviles */
+@media screen and (max-width: 768px) {
+    /* Ocultamos la lista horizontal de categorías */
+    .desktop-categories {
+        display: none;
+    }
+
+    /* El contenedor ahora solo tiene el botón de menú */
+    .nav-cont-categ {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    /* El menú desplegable se hace un poco más ancho para facilitar el toque */
+    .menu-desplegable {
+        width: 260px;
+    }
+    
+    .menu-item {
+        padding: 15px; /* Más área de toque */
+        font-size: 1rem;
+    }
+}

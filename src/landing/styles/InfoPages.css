@@ -1,0 +1,118 @@
+/* Wrapper principal */
+.info-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--gray-50); /* Fondo suave estilo landing */
+}
+
+/* Sección principal centrada */
+.info-main-section {
+    flex: 1;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    /* Un degradado muy sutil opcional, similar al hero de la landing */
+    background: var(--gradient-sky-light, linear-gradient(180deg, #fff 0%, var(--gray-50) 100%));
+}
+
+.info-container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Enlace de volver */
+.info-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-gray-4);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+    align-self: flex-start;
+}
+
+.info-back-link:hover {
+    color: var(--blue-600); /* Azul de la landing */
+}
+
+/* Tarjeta de contenido (Hoja de papel) */
+.info-card {
+    background: white;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.05); /* Sombra suave */
+    border: 1px solid var(--gray-100);
+}
+
+/* Tipografía alineada a la landing */
+.info-title {
+    font-size: 2.5rem;
+    color: var(--text-gray-1);
+    margin: 0 0 20px 0;
+    font-family: var(--font-family-Teachers); /* Fuente de la app */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.info-divider {
+    height: 4px;
+    width: 60px;
+    background-color: var(--blue-500); /* Acento azul landing */
+    margin-bottom: 40px;
+    border-radius: 2px;
+}
+
+.info-content-body {
+    font-family: var(--font-family-Inter, sans-serif); /* Fuente legible para texto largo */
+    color: var(--text-gray-3);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.info-highlight {
+    font-size: 1.2rem;
+    color: var(--text-gray-2);
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.info-content-body h3 {
+    color: var(--text-gray-1);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.info-content-body p {
+    margin-bottom: 20px;
+}
+
+.info-content-body ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.info-content-body li {
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-main-section {
+        padding: 30px 15px;
+    }
+
+    .info-card {
+        padding: 30px 20px;
+    }
+    
+    .info-title {
+        font-size: 2rem;
+    }
+}

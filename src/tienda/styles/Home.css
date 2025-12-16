@@ -1,0 +1,10 @@
+* {
+    box-sizing:  border-box;
+}
+
+body {
+    color: var(--text-gray-2);
+    background-color: #EDEDED;
+    font-family: "Teachers", sans-serif;
+    margin: 0;
+}

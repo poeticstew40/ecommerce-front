@@ -1,0 +1,340 @@
+.dashboard-header {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.dashboard-title {
+    /* border: 1px solid red; */
+    margin: 0;
+    color: #2c3e50;
+
+}
+
+.dashboard-verification-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.dashboard-verification-badge.verified {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.dashboard-verification-badge.unverified {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.dashboard-verification-badge.unknown {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+}
+
+.dashboard-verification-icon {
+    font-size: 1.2rem;
+}
+
+.dashboard-verification-icon.verified {
+    color: #155724;
+}
+
+.dashboard-verification-icon.unverified {
+    color: #721c24;
+}
+
+.dashboard-verification-icon.unknown {
+    color: #856404;
+}
+
+
+.dashboard-verification-text {
+    font-weight: 500;
+}
+
+.dashboard-verification-text.verified {
+    color: #155724;
+}
+
+.dashboard-verification-text.unverified {
+    color: #721c24;
+}
+
+.dashboard-verification-text.unknown {
+    color: #856404;
+}
+
+.dashboard-tienda-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.dashboard-tienda-card h3 {
+    margin-top: 0;
+}
+
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-stat-card h4 {
+    margin-top: 0;
+}
+
+.dashboard-stat-card.products h4 {
+    color: #3498db;
+}
+
+.dashboard-stat-card.orders h4 {
+    color: #2ecc71;
+}
+
+.dashboard-stat-card.sales h4 {
+    color: #f39c12;
+}
+
+.dashboard-stat-value {
+    font-size: 2rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.dashboard-stat-label {
+    color: #666;
+}
+
+.dashboard-empty {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dashboard-empty h3 {
+    color: #2c3e50;
+}
+
+.dashboard-empty p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.dashboard-empty-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dashboard-btn {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.dashboard-btn-primary {
+    background-color: #2ecc71;
+}
+
+.dashboard-btn-secondary {
+    background-color: #3498db;
+}
+
+.dashboard-btn-gray {
+    background-color: #95a5a6;
+}
+
+.dashboard-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.dashboard-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.dashboard-form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard-form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.dashboard-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+/* ============================================
+   📱 MOBILE (≤ 480px)
+   ============================================ */
+@media (max-width: 480px) {
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-verification-badge {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .dashboard-tienda-card {
+        padding: 20px;
+    }
+
+    .dashboard-stats-grid {
+        grid-template-columns: 1fr; /* UNA COLUMNA */
+        gap: 15px;
+    }
+
+    .dashboard-stat-card {
+        padding: 15px;
+    }
+
+    .dashboard-stat-value {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-empty {
+        padding: 25px;
+    }
+
+    .dashboard-empty-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dashboard-btn {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .dashboard-form-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .dashboard-form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* ============================================
+   📱📲 RESPONSIVE – TABLETS (481px – 768px)
+   ============================================ */  /* ============================================
+   📱📲 TABLETS (481px – 768px)
+   ============================================ */
+@media (max-width: 768px) {
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .dashboard-title {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-verification-badge {
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+
+    .dashboard-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 18px;
+    }
+
+    .dashboard-stat-card {
+        padding: 18px;
+    }
+
+    .dashboard-stat-value {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-empty-actions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .dashboard-btn {
+        padding: 12px 18px;
+        font-size: 1rem;
+    }
+
+    .dashboard-form-container {
+        max-width: 90%;
+    }
+
+    .dashboard-form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+/* ============================================
+   💻 LAPTOPS PEQUEÑAS (≤ 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+
+    .dashboard-tienda-card {
+        padding: 25px;
+    }
+
+    .dashboard-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .dashboard-form-container {
+        max-width: 80%;
+    }
+}

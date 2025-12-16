@@ -1,0 +1,372 @@
+.productos-container {
+    padding: 20px;
+}
+
+.productos-title {
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.productos-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+}
+
+.productos-alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.productos-alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.productos-alert-warning p {
+    margin: 10px 0;
+}
+
+.productos-form-group {
+    margin-bottom: 20px;
+}
+
+.productos-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .productos-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.productos-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.productos-input,
+.productos-textarea,
+.productos-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.productos-input:disabled,
+.productos-textarea:disabled,
+.productos-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.productos-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.productos-select {
+    cursor: pointer;
+}
+
+.productos-help-text {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.productos-imagen-preview {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.productos-imagen-preview img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    object-fit: contain;
+}
+
+.productos-file-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.productos-file-input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.productos-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.productos-btn {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.productos-btn-submit {
+    flex: 1;
+    background-color: #3498db;
+}
+
+.productos-btn-submit:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.productos-btn-submit:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.productos-btn-cancel {
+    background-color: #95a5a6;
+}
+
+.productos-btn-cancel:hover:not(:disabled) {
+    background-color: #7f8c8d;
+}
+
+.productos-btn-cancel:disabled {
+    cursor: not-allowed;
+}
+
+.productos-btn-secondary {
+    background-color: #e67e22;
+    margin-top: 10px;
+}
+
+.productos-btn-secondary:hover:not(:disabled) {
+    background-color: #d35400;
+}
+
+.productos-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.productos-loading-content {
+    text-align: center;
+}
+
+.productos-loading-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.productos-loading-text {
+    color: #666;
+}
+
+.productos-loading-categorias {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #666;
+}
+
+.productos-error {
+    padding: 20px;
+}
+
+.productos-error-title {
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.productos-error-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+.productos-error-alert {
+    padding: 12px;
+    background-color: #fee;
+    color: #c33;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #fcc;
+}
+
+.productos-error-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.productos-error-btn {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.productos-error-btn-primary {
+    background-color: #3498db;
+}
+
+.productos-error-btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.productos-error-text {
+    display: block;
+    margin-top: 8px;
+}
+
+/* ============================================
+   📱 RESPONSIVE – CELULARES (≤ 480px)
+   ============================================ */
+@media (max-width: 480px) {
+
+    .categorias-container {
+        padding: 15px;
+    }
+
+    .categorias-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .categorias-subtitle {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .categorias-form-container,
+    .categorias-list-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .categorias-form-actions {
+        flex-direction: column;
+    }
+
+    .categorias-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .categorias-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .categorias-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .categorias-edit-input {
+        width: 100%;
+    }
+
+    .categorias-loading {
+        min-height: 250px;
+    }
+}
+
+/* ============================================
+   📱📲 RESPONSIVE – TABLETS (481px – 768px)
+   ============================================ */
+@media (max-width: 768px) {
+
+    .categorias-container {
+        padding: 20px;
+    }
+
+    .categorias-title {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .categorias-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .categorias-form-container,
+    .categorias-list-container {
+        padding: 25px;
+        max-width: 100%;
+    }
+
+    .categorias-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .categorias-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .categorias-btn {
+        font-size: 1rem;
+        padding: 10px 18px;
+    }
+
+    .categorias-edit-input {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   💻 RESPONSIVE – LAPTOPS PEQUEÑAS (≤ 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+
+    .categorias-form-container,
+    .categorias-list-container {
+        max-width: 90%;
+        margin: 0 auto 30px auto;
+    }
+
+    .categorias-btn {
+        font-size: 1rem;
+    }
+}

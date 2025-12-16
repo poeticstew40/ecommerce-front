@@ -1,0 +1,610 @@
+/* ============================================
+   VARIABLES CSS GLOBALES - SISTEMA DE DISEÑO
+   ============================================ */
+
+:root {
+    /* ============================================
+       PALETAS DE COLORES
+       ============================================ */
+   
+   /* Colores Pricipales */
+   --white: #ffffff;
+   --black: #000000;
+
+    /* --- AZULES --- */
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-350: #7fb3f6;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-800: #1e40af;
+    --blue-900: #1e3a8a;
+    --blue-950: #172554;
+    
+    /* --- VERDES --- */
+    --green-50: #f0fcf0;
+    --green-100: #dcfcdd;
+    --green-200: #bbf7c1;
+    --green-300: #5ee86a;
+    --green-350: #66d48b;
+    --green-400: #42bb42;
+    --green-500: #33aa39;
+    --green-600: #16a31b;
+    --green-650: #29843b;
+    --green-700: #1a8015;
+    --green-800: #16651b;
+    --green-900: #14531a;
+    --green-950: #052e09;
+    
+    /* --- NARANJAS --- */
+    --orange-50: #fff7ed;
+    --orange-100: #ffedd5;
+    --orange-200: #fed7aa;
+    --orange-300: #fdba74;
+    --orange-350: #fb923c;
+    --orange-400: #fb923c;
+    --orange-500: #f97316;
+    --orange-600: #ea580c;
+    --orange-700: #c2410c;
+    --orange-800: #9a3412;
+    --orange-900: #7c2d12;
+    --orange-950: #431407;
+    
+    /* --- CELESTES --- */
+    --cyan-50: #ecfeff;
+    --cyan-100: #cffafe;
+    --cyan-200: #a5f3fc;
+    --cyan-300: #67e8f9;
+    --cyan-350: #5eead4;
+    --cyan-400: #22d3ee;
+    --cyan-500: #06b6d4;
+    --cyan-600: #0891b2;
+    --cyan-700: #0e7490;
+    --cyan-800: #155e75;
+    --cyan-900: #164e63;
+    --cyan-950: #083344;
+
+    /* --- VIOLETAS --- */
+    --violet-50: #f5f3ff;
+    --violet-100: #ede9fe;
+    --violet-200: #ddd6fe;
+    --violet-300: #c4b5fd;
+    --violet-350: #b78cf8;
+    --violet-400: #a78bfa;
+    --violet-500: #8b5cf6;
+    --violet-600: #7c3aed;
+    --violet-700: #6d28d9;
+    --violet-800: #5b21b6;
+    --violet-900: #4c1d95;
+    --violet-950: #2e1065;
+    
+    /* --- ROJOS --- */
+    --red-50: #fef2f2;
+    --red-100: #fee2e2;
+    --red-200: #fecaca;
+    --red-300: #fca5a5;
+    --red-350: #f87171;
+    --red-400: #f87171;
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+    --red-700: #b91c1c;
+    --red-800: #991b1b;
+    --red-900: #7f1d1d;
+    --red-950: #450a0a;
+    
+    /* --- GRISES Y NEUTROS --- */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-350: #b1b5bd;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --gray-950: #030712;
+
+    
+    /* ============================================
+       FONDOS Y DIVS
+       ============================================ */
+    
+    /* Fondos principales -blancos a negros-*/
+    /* Blancos */
+    --bg-light-primary: #ffffff;
+    --bg-light-secondary: var(--gray-50);
+    --bg-light-tertiary: var(--gray-100);
+
+    /* Negros */
+    --bg-dark-primary: var(--gray-950);
+    --bg-dark-secondary: var(--gray-900);
+    --bg-dark-tertiary: var(--gray-800);
+
+    
+    /* Fondos con colores de paleta */
+    --bg-blue: var(--blue-50);
+    --bg-green: var(--green-50);
+    --bg-orange: var(--orange-50);
+    --bg-cyan: var(--cyan-50);
+    --bg-red: var(--red-50);
+    --bg-violet: var(--violet-50);
+    
+    /* Overlays Principal*/
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Overlays de colores de paleta */
+    --bg-overlay-blue: rgba(37, 99, 235, 0.1);
+    --bg-overlay-green: rgba(34, 197, 94, 0.1);
+    --bg-overlay-orange: rgba(249, 115, 22, 0.1);
+    --bg-overlay-cyan: rgba(6, 182, 212, 0.1);
+    --bg-overlay-red: rgba(239, 68, 68, 0.256);
+    --bg-overlay-violet: rgba(139, 92, 246, 0.1);
+
+    /* Fondos con degradado (gradients) */
+    /* Degradados azules */
+    --gradient-blue: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-700) 100%);
+    --gradient-blue-light: linear-gradient(135deg, var(--blue-400) 0%, var(--blue-600) 100%);
+    --gradient-blue-dark: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-900) 100%);
+    --gradient-blue-soft: linear-gradient(135deg, var(--blue-100) 0%, var(--blue-300) 100%);
+    --gradient-blue-vertical: linear-gradient(180deg, var(--blue-500) 0%, var(--blue-700) 100%);
+    --gradient-blue-vertical-soft: linear-gradient(180deg, var(--blue-100) 0%, var(--blue-300) 100%);
+    --gradient-blue-vertical-soft-2: linear-gradient(180deg, var(--blue-300) 0%, var(--blue-100) 100%);
+    --gradient-blue-horizontal: linear-gradient(90deg, var(--blue-500) 0%, var(--blue-700) 100%);
+    
+    /* Degradados verdes */
+    --gradient-green: linear-gradient(135deg, var(--green-500) 0%, var(--green-700) 100%);
+    --gradient-green-light: linear-gradient(135deg, var(--green-400) 0%, var(--green-600) 100%);
+    --gradient-green-dark: linear-gradient(135deg, var(--green-700) 0%, var(--green-900) 100%);
+    --gradient-green-soft: linear-gradient(135deg, var(--green-100) 0%, var(--green-300) 100%);
+    --gradient-green-soft-2: linear-gradient(135deg, var(--green-300) 0%, var(--green-100) 100%);
+    --gradient-green-vertical: linear-gradient(180deg, var(--green-500) 0%, var(--green-700) 100%);
+    --gradient-green-vertical-soft: linear-gradient(180deg, var(--green-100) 0%, var(--green-400) 100%);
+    --gradient-green-vertical-soft-2: linear-gradient(180deg, var(--green-400) 0%, var(--green-100) 100%);
+    --gradient-green-horizontal: linear-gradient(90deg, var(--green-500) 0%, var(--green-700) 100%);
+    
+    /* Degradados naranjas */
+    --gradient-orange: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-700) 100%);
+    --gradient-orange-light: linear-gradient(135deg, var(--orange-400) 0%, var(--orange-600) 100%);
+    --gradient-orange-dark: linear-gradient(135deg, var(--orange-700) 0%, var(--orange-900) 100%);
+    --gradient-orange-soft: linear-gradient(135deg, var(--orange-100) 0%, var(--orange-300) 100%);
+    --gradient-orange-vertical: linear-gradient(180deg, var(--orange-500) 0%, var(--orange-700) 100%);
+    --gradient-orange-vertical-soft: linear-gradient(180deg, var(--orange-100) 0%, var(--orange-300) 100%);
+    --gradient-orange-vertical-soft-2: linear-gradient(180deg, var(--orange-300) 0%, var(--orange-100) 100%);
+    --gradient-orange-horizontal: linear-gradient(90deg, var(--orange-500) 0%, var(--orange-700) 100%);
+    
+    /* Degradados celestes */
+    --gradient-cyan: linear-gradient(135deg, var(--cyan-500) 0%, var(--cyan-700) 100%);
+    --gradient-cyan-light: linear-gradient(135deg, var(--cyan-400) 0%, var(--cyan-600) 100%);
+    --gradient-cyan-dark: linear-gradient(135deg, var(--cyan-700) 0%, var(--cyan-900) 100%);
+    --gradient-cyan-soft: linear-gradient(135deg, var(--cyan-100) 0%, var(--cyan-300) 100%);
+    --gradient-cyan-vertical: linear-gradient(180deg, var(--cyan-500) 0%, var(--cyan-700) 100%);
+    --gradient-cyan-vertical-soft: linear-gradient(180deg, var(--cyan-100) 0%, var(--cyan-300) 100%);
+    --gradient-cyan-vertical-soft-2: linear-gradient(180deg, var(--cyan-300) 0%, var(--cyan-100) 100%);
+    --gradient-cyan-horizontal: linear-gradient(90deg, var(--cyan-500) 0%, var(--cyan-700) 100%);
+    
+    /* Degradados rojos */
+    --gradient-red: linear-gradient(135deg, var(--red-500) 0%, var(--red-700) 100%);
+    --gradient-red-light: linear-gradient(135deg, var(--red-400) 0%, var(--red-600) 100%);
+    --gradient-red-dark: linear-gradient(135deg, var(--red-700) 0%, var(--red-900) 100%);
+    --gradient-red-soft: linear-gradient(135deg, var(--red-100) 0%, var(--red-300) 100%);
+    --gradient-red-vertical: linear-gradient(180deg, var(--red-500) 0%, var(--red-700) 100%);
+    --gradient-red-vertical-soft: linear-gradient(180deg, var(--red-100) 0%, var(--red-300) 100%);
+    --gradient-red-vertical-soft-2: linear-gradient(180deg, var(--red-300) 0%, var(--red-100) 100%);
+    --gradient-red-horizontal: linear-gradient(90deg, var(--red-500) 0%, var(--red-700) 100%);
+
+    /* Degradados violetas */
+    --gradient-violet: linear-gradient(135deg, var(--violet-500) 0%, var(--violet-700) 100%);
+    --gradient-violet-light: linear-gradient(135deg, var(--violet-400) 0%, var(--violet-600) 100%);
+    --gradient-violet-dark: linear-gradient(135deg, var(--violet-700) 0%, var(--violet-900) 100%);
+    --gradient-violet-soft: linear-gradient(135deg, var(--violet-100) 0%, var(--violet-300) 100%);
+    --gradient-violet-vertical: linear-gradient(180deg, var(--violet-500) 0%, var(--violet-700) 100%);
+    --gradient-violet-vertical-soft: linear-gradient(180deg, var(--violet-100) 0%, var(--violet-300) 100%);
+    --gradient-violet-vertical-soft-2: linear-gradient(180deg, var(--violet-300) 0%, var(--violet-100) 100%);
+    --gradient-violet-horizontal: linear-gradient(90deg, var(--violet-500) 0%, var(--violet-700) 100%);
+
+    /* Degradados combinados (multicolor) */
+    --gradient-blue-green: linear-gradient(135deg, var(--blue-500) 0%, var(--green-500) 100%);
+    --gradient-blue-cyan: linear-gradient(135deg, var(--blue-500) 0%, var(--cyan-500) 100%);
+    --gradient-orange-red: linear-gradient(135deg, var(--orange-500) 0%, var(--red-500) 100%);
+    --gradient-cyan-green: linear-gradient(135deg, var(--cyan-500) 0%, var(--green-500) 100%);
+    --gradient-purple-blue: linear-gradient(135deg, #667eea 0%, var(--blue-500) 100%);
+    --gradient-purple-pink: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-rainbow: linear-gradient(135deg, var(--red-500) 0%, var(--orange-500) 25%, var(--green-500) 50%, var(--cyan-500) 75%, var(--blue-500) 100%);
+    --gradient-violet-blue: linear-gradient(135deg, var(--violet-500) 0%, var(--blue-500) 100%);
+    --gradient-violet-blue: linear-gradient(135deg, var(--violet-500) 0%, var(--blue-500) 100%);
+    --gradient-vertical-violet-blue: linear-gradient(180deg, var(--blue-100) 0%, var(--violet-300) 100%);
+
+    /* Degradados con grises */
+    --gradient-gray: linear-gradient(135deg, var(--gray-400) 0%, var(--gray-600) 100%);
+    --gradient-gray-light: linear-gradient(135deg, var(--gray-200) 0%, var(--gray-400) 100%);
+    --gradient-gray-dark: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-900) 100%);
+    --gradient-white-gray: linear-gradient(135deg, #ffffff 0%, var(--gray-100) 100%);
+    --gradient-gray-white: linear-gradient(135deg, var(--gray-100) 0%, #ffffff 100%);
+    
+    /* Degradados radiales */
+    --gradient-radial-blue: radial-gradient(circle, var(--blue-400) 0%, var(--blue-700) 100%);
+    --gradient-radial-green: radial-gradient(circle, var(--green-400) 0%, var(--green-700) 100%);
+    --gradient-radial-orange: radial-gradient(circle, var(--orange-400) 0%, var(--orange-700) 100%);
+    --gradient-radial-cyan: radial-gradient(circle, var(--cyan-400) 0%, var(--cyan-700) 100%);
+    --gradient-radial-red: radial-gradient(circle, var(--red-400) 0%, var(--red-700) 100%);
+    --gradient-radial-gray: radial-gradient(circle, var(--gray-300) 0%, var(--gray-600) 100%);
+    --gradient-radial-violet: radial-gradient(circle, var(--violet-400) 0%, var(--violet-700) 100%);
+    
+    /* Degradados con transparencia */
+    --gradient-blue-transparent: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(29, 78, 216, 0.9) 100%);
+    --gradient-green-transparent: linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(21, 128, 61, 0.9) 100%);
+    --gradient-orange-transparent: linear-gradient(135deg, rgba(249, 115, 22, 0.9) 0%, rgba(194, 65, 12, 0.9) 100%);
+    --gradient-cyan-transparent: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(14, 116, 144, 0.9) 100%);
+    --gradient-red-transparent: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(185, 28, 28, 0.9) 100%);
+    --gradient-violet-transparent: linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(109, 40, 217, 0.9) 100%);
+    
+    /* Degradados suaves (pastel) */
+    --gradient-pastel-blue: linear-gradient(135deg, var(--blue-100) 0%, var(--blue-200) 100%);
+    --gradient-pastel-green: linear-gradient(135deg, var(--green-100) 0%, var(--green-200) 100%);
+    --gradient-pastel-orange: linear-gradient(135deg, var(--orange-100) 0%, var(--orange-200) 100%);
+    --gradient-pastel-cyan: linear-gradient(135deg, var(--cyan-100) 0%, var(--cyan-200) 100%);
+    --gradient-pastel-red: linear-gradient(135deg, var(--red-100) 0%, var(--red-200) 100%);
+    --gradient-pastel-violet: linear-gradient(135deg, var(--violet-100) 0%, var(--violet-200) 100%);
+
+    /* Degradados especiales */
+    --gradient-sunset: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-ocean: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-forest: linear-gradient(135deg, var(--green-600) 0%, var(--green-800) 100%);
+    --gradient-fire: linear-gradient(135deg, var(--orange-500) 0%, var(--red-500) 100%);
+    --gradient-sky: linear-gradient(135deg, var(--cyan-400) 0%, var(--blue-500) 100%);
+    --gradient-midnight: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+    --gradient-violet-gradient: linear-gradient(135deg, var(--violet-500) 0%, var(--violet-700) 100%);
+
+    /* ============================================
+       BORDES
+       ============================================ */
+    
+    /* Colores de bordes */
+    --border-color: var(--gray-200);
+    --border-color-light: var(--gray-100);
+    --border-color-dark: var(--gray-300);
+    --border-color-blue: var(--blue-500);
+    --border-color-green: var(--green-500);
+    --border-color-orange: var(--orange-500);
+    --border-color-cyan: var(--cyan-500);
+    --border-color-red: var(--red-500);
+    --border-color-violet: var(--violet-500);
+    
+    /* Tamaños de radio (border-radius) */
+    --border-radius-none: 0;
+    --border-radius-xs: 2px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-2xl: 20px;
+    --border-radius-3xl: 24px;
+    --border-radius-full: 9999px;
+    
+    /* Anchos de bordes */
+    --border-width-none: 0;
+    --border-width-sm: 1px;
+    --border-width: 2px;
+    --border-width-xl: 3px;
+    --border-width-2xl: 4px;
+    
+    /* ============================================
+       ESPACIADOS
+       ============================================ */
+    
+    /* Padding */
+    --padding-none: 0;
+    --padding-xs: 0.25rem;      /* 4px */
+    --padding-sm: 0.5rem;       /* 8px */
+    --padding-md: 0.75rem;      /* 12px */
+    --padding: 1rem;            /* 16px */
+    --padding-lg: 1.5rem;       /* 24px */
+    --padding-xl: 2rem;         /* 32px */
+    --padding-2xl: 2.5rem;      /* 40px */
+    --padding-3xl: 3rem;        /* 48px */
+    --padding-4xl: 4rem;        /* 64px */
+    
+    /* Margin */
+    --margin-none: 0;
+    --margin-xs: 0.25rem;        /* 4px */
+    --margin-sm: 0.5rem;         /* 8px */
+    --margin-md: 0.75rem;        /* 12px */
+    --margin: 1rem;             /* 16px */
+    --margin-lg: 1.5rem;         /* 24px */
+    --margin-xl: 2rem;           /* 32px */
+    --margin-2xl: 2.5rem;        /* 40px */
+    --margin-3xl: 3rem;          /* 48px */
+    --margin-4xl: 4rem;          /* 64px */
+    
+    /* Gap (para flexbox y grid) */
+    --gap-none: 0;
+    --gap-xs: 0.25rem;
+    --gap-sm: 0.5rem;
+    --gap-md: 0.75rem;
+    --gap: 1rem;
+    --gap-lg: 1.5rem;
+    --gap-xl: 2rem;
+    --gap-2xl: 3rem;
+    
+    /* ============================================
+       SOMBRAS
+       ============================================ */
+    
+    /* Sombras estándar */
+    --shadow-none: none;
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    
+    /* Sombras coloreadas */
+    --shadow-blue: 0 10px 15px -3px rgba(37, 99, 235, 0.3), 0 4px 6px -4px rgba(37, 99, 235, 0.2);
+    --shadow-green: 0 10px 15px -3px rgba(34, 197, 94, 0.3), 0 4px 6px -4px rgba(34, 197, 94, 0.2);
+    --shadow-orange: 0 10px 15px -3px rgba(249, 115, 22, 0.3), 0 4px 6px -4px rgba(249, 115, 22, 0.2);
+    --shadow-cyan: 0 10px 15px -3px rgba(6, 182, 212, 0.3), 0 4px 6px -4px rgba(6, 182, 212, 0.2);
+    --shadow-red: 0 10px 15px -3px rgba(239, 68, 68, 0.3), 0 4px 6px -4px rgba(239, 68, 68, 0.2);
+    
+    /* ============================================
+       TEXTO
+       ============================================ */
+    
+    /* Colores de texto */
+    --text-gray-1: var(--gray-900);
+    --text-gray-2: var(--gray-800);
+    --text-gray-3: var(--gray-700);
+    --text-gray-4: var(--gray-600);
+    --text-gray-5: var(--gray-500);
+    --text-white: #ffffff;
+    --text-black: #000000;
+    
+    /* Colores de texto con paleta */
+    --text-blue: var(--blue-600);
+    --text-blue-light: var(--blue-500);
+    --text-blue-light-2: var(--blue-350);
+    --text-blue-dark: var(--blue-800);
+    
+    --text-green: var(--green-600);
+    --text-green-light: var(--green-500);
+    --text-green-light-2: var(--green-350);
+    --text-green-dark: var(--green-800);
+    
+    --text-orange: var(--orange-600);
+    --text-orange-light: var(--orange-500);
+    --text-orange-light-2: var(--orange-350);
+    --text-orange-dark: var(--orange-800);
+    
+    --text-cyan: var(--cyan-600);
+    --text-cyan-light: var(--cyan-500);
+    --text-cyan-light-2: var(--cyan-350);
+    --text-cyan-dark: var(--cyan-800);
+    
+    --text-red: var(--red-600);
+    --text-red-light: var(--red-500);
+    --text-red-light-2: var(--red-350);
+    --text-red-dark: var(--red-800);
+
+    --text-violet: var(--violet-600);
+    --text-violet-light: var(--violet-500);
+    --text-violet-light-2: var(--violet-350);
+    --text-violet-dark: var(--violet-800);
+
+    /* Tamaños de fuente */
+    --font-size-xs: 0.75rem;      /* 12px */
+    --font-size-sm: 0.875rem;     /* 14px */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-lg: 1.125rem;     /* 18px */
+    --font-size-xl: 1.25rem;      /* 20px */
+    --font-size-2xl: 1.5rem;      /* 24px */
+    --font-size-3xl: 1.875rem;    /* 30px */
+    --font-size-4xl: 2.25rem;     /* 36px */
+    --font-size-5xl: 3rem;        /* 48px */
+    --font-size-6xl: 3.75rem;     /* 60px */
+    
+    /* Pesos de fuente (negrita) */
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+    
+    /* Estilos de fuente */
+    --font-family-Inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-family-Orbitron: "Orbitron", sans-serif;
+    --font-family-Cinzel: "Cinzel", serif;
+    --font-family-CinzelDecorative: "Cinzel Decorative", serif;
+    --font-family-Graduate: "Graduate", serif;
+    --font-family-UnicaOne: "Unica One", sans-serif;
+    --font-family-Teachers: "Teachers", sans-serif;
+    
+    /* Altura de línea */
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* Espaciado de letras */
+    --letter-spacing-xs: -0.05em;
+    --letter-spacing-sm: -0.025em;
+    --letter-spacing-md: 0;
+    --letter-spacing-lg: 0.025em;
+    --letter-spacing-xl: 0.05em;
+    --letter-spacing-2xl: 0.1em;
+    
+    /* ============================================
+       ICONOS
+       ============================================ */
+    
+    /* Tamaños de iconos */
+    --icon-size-xs: 0.75rem;      /* 12px */
+    --icon-size-sm: 1rem;         /* 16px */
+    --icon-size-md: 1.25rem;      /* 20px */
+    --icon-size: 1.5rem;          /* 24px */
+    --icon-size-lg: 2rem;         /* 32px */
+    --icon-size-xl: 2.5rem;       /* 40px */
+    --icon-size-2xl: 3rem;        /* 48px */
+    --icon-size-3xl: 4rem;        /* 64px */
+    
+    /* Colores de iconos */
+    --icon-gray-1: var(--gray-900);
+    --icon-gray-2: var(--gray-500);
+    --icon-gray-3: var(--gray-700);
+    --icon-color-blue: var(--blue-600);
+    --icon-color-green: var(--green-600);
+    --icon-color-orange: var(--orange-600);
+    --icon-color-cyan: var(--cyan-600);
+    --icon-color-red: var(--red-600);
+    --icon-color-violet: var(--violet-600);
+    --icon-color-white: #ffffff;
+    
+    /* ============================================
+       TRANSICIONES
+       ============================================ */
+    
+    /* Tiempos de transición */
+    --transition-instant: 0ms;
+    --transition-fastest: 50ms;
+    --transition-faster: 100ms;
+    --transition-fast: 150ms;
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+    --transition-slower: 750ms;
+    --transition-slowest: 1000ms;
+    
+    /* Funciones de timing */
+    --ease-linear: linear;
+    --ease-in: ease-in;
+    --ease-out: ease-out;
+    --ease-in-out: ease-in-out;
+    --ease-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Transiciones predefinidas */
+    --main-transition-fast: var(--transition-fast) var(--ease-in-out);
+    --main-transition-normal: var(--transition-normal) var(--ease-in-out);
+    --main-transition-slow: var(--transition-slow) var(--ease-in-out);
+    --main-transition-all-fast: all var(--transition-fast) var(--ease-in-out);
+    --main-transition-all-normal: all var(--transition-normal) var(--ease-in-out);
+    --main-transition-all-slow: all var(--transition-slow) var(--ease-in-out);
+    
+    /* ============================================
+       Z-INDEX
+       ============================================ */
+    
+    --z-base: 0;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-notification: 1080;
+    --z-max: 9999;
+}
+
+/* ============================================
+   UTILIDADES GLOBALES
+   ============================================ */
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: var(--font-family);
+   color: var(--text-primary);
+   background-color: var(--bg-light-primary);
+   line-height: var(--line-height-normal);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clases de utilidad para colores de texto */
+.text-blue { color: var(--text-blue); }
+.text-green { color: var(--text-green); }
+.text-orange { color: var(--text-orange); }
+.text-cyan { color: var(--text-cyan); }
+.text-red { color: var(--text-red); }
+.text-violet { color: var(--text-violet); }
+
+/* Clases de utilidad para fondos */
+.bg-blue { background-color: var(--bg-blue); }
+.bg-green { background-color: var(--bg-green); }
+.bg-orange { background-color: var(--bg-orange); }
+.bg-cyan { background-color: var(--bg-cyan); }
+.bg-red { background-color: var(--bg-red); }
+.bg-violet { background-color: var(--bg-violet); }
+
+/* Clases de utilidad para degradados */
+.gradient-blue { background: var(--gradient-blue); }
+.gradient-blue-light { background: var(--gradient-blue-light); }
+.gradient-blue-dark { background: var(--gradient-blue-dark); }
+.gradient-blue-soft { background: var(--gradient-blue-soft); }
+.gradient-blue-vertical-soft { background: var(--gradient-blue-vertical-soft); }
+.gradient-blue-vertical-soft-2 { background: var(--gradient-blue-vertical-soft-2); }
+.gradient-blue-horizontal { background: var(--gradient-blue-horizontal); }
+
+.gradient-green { background: var(--gradient-green); }
+.gradient-green-light { background: var(--gradient-green-light); }
+.gradient-green-dark { background: var(--gradient-green-dark); }
+.gradient-green-soft { background: var(--gradient-green-soft); }
+.gradient-green-vertical-soft { background: var(--gradient-green-vertical-soft); }
+.gradient-green-vertical-soft-2 { background: var(--gradient-green-vertical-soft-2); }
+.gradient-green-horizontal { background: var(--gradient-green-horizontal); }
+
+.gradient-orange { background: var(--gradient-orange); }
+.gradient-orange-light { background: var(--gradient-orange-light); }
+.gradient-orange-dark { background: var(--gradient-orange-dark); }
+.gradient-orange-soft { background: var(--gradient-orange-soft); }
+.gradient-orange-vertical-soft { background: var(--gradient-orange-vertical-soft); }
+.gradient-orange-vertical-soft-2 { background: var(--gradient-orange-vertical-soft-2); }
+.gradient-orange-horizontal { background: var(--gradient-orange-horizontal); }
+
+.gradient-cyan { background: var(--gradient-cyan); }
+.gradient-cyan-light { background: var(--gradient-cyan-light); }
+.gradient-cyan-dark { background: var(--gradient-cyan-dark); }
+.gradient-cyan-soft { background: var(--gradient-cyan-soft); }
+.gradient-cyan-vertical-soft { background: var(--gradient-cyan-vertical-soft); }
+.gradient-cyan-vertical-soft-2 { background: var(--gradient-cyan-vertical-soft-2); }
+.gradient-cyan-horizontal { background: var(--gradient-cyan-horizontal); }
+
+.gradient-red { background: var(--gradient-red); }
+.gradient-red-light { background: var(--gradient-red-light); }
+.gradient-red-dark { background: var(--gradient-red-dark); }
+.gradient-red-soft { background: var(--gradient-red-soft); }
+.gradient-red-vertical-soft { background: var(--gradient-red-vertical-soft); }
+.gradient-red-vertical-soft-2 { background: var(--gradient-red-vertical-soft-2); }
+.gradient-red-horizontal { background: var(--gradient-red-horizontal); }
+
+.gradient-blue-green { background: var(--gradient-blue-green); }
+.gradient-blue-cyan { background: var(--gradient-blue-cyan); }
+.gradient-orange-red { background: var(--gradient-orange-red); }
+.gradient-cyan-green { background: var(--gradient-cyan-green); }
+.gradient-purple-blue { background: var(--gradient-purple-blue); }
+.gradient-purple-pink { background: var(--gradient-purple-pink); }
+.gradient-rainbow { background: var(--gradient-rainbow); }
+.gradient-violet-blue { background: var(--gradient-violet-blue); }
+
+.gradient-sunset { background: var(--gradient-sunset); }
+.gradient-ocean { background: var(--gradient-ocean); }
+.gradient-forest { background: var(--gradient-forest); }
+.gradient-fire { background: var(--gradient-fire); }
+.gradient-sky { background: var(--gradient-sky); }
+.gradient-midnight { background: var(--gradient-midnight); }
+.gradient-violet-gradient { background: var(--gradient-violet-gradient); }
