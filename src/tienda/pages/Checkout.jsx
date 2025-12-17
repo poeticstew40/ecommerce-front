@@ -140,6 +140,11 @@ function Checkout() {
             const respuestaPago = await crearPreferenciaPago(pedidoCreado.id);
             
             if (respuestaPago && respuestaPago.url) {
+                // ============================================================
+                // MODIFICACIÓN IMPORTANTE: Guardamos la tienda para el retorno
+                // ============================================================
+                localStorage.setItem("auth_tiendaActual", nombreTienda);
+
                 window.location.href = respuestaPago.url;
             } else {
                 throw new Error("No se recibió la URL de pago.");
@@ -161,7 +166,7 @@ function Checkout() {
                 {/* Columna izquierda: Datos */}
                 <div className="items-cart-cont">
                     <div className="items-cart" style={{ flexDirection: 'column', alignItems: 'flex-start', height: 'auto', gap: '20px', padding: '30px' }}>
-                       
+                        
                         <h2 style={{ margin: 0, color: 'var(--text-gray-1)' }}>Opciones de Entrega</h2>
                         
                         {/* 1. SELECCIONAR MÉTODO DE ENVÍO */}

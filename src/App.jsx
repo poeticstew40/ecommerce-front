@@ -15,7 +15,7 @@ import SolicitarRecuperacion from "./landing/pages/SolicitarRecuperacion.jsx";
 import RestablecerContrasenia from "./landing/pages/RestablecerContrasenia.jsx";
 import InfoPages from "./landing/pages/InfoPages.jsx";
 
-// Rutas de comprador (Asegúrate de que estos archivos existan en estas carpetas)
+// Rutas de comprador
 import BuyerLayout from "./landing/components/BuyerLayout.jsx";
 import BuyerCompras from "./landing/pages/BuyerCompras.jsx";
 import PerfilSeguridad from "./components/PerfilSeguridad.jsx";
@@ -36,115 +36,89 @@ import Catalogo from "./tienda/pages/Catalogo.jsx";
 import Carrito from "./tienda/pages/Carrito.jsx";
 import Checkout from "./tienda/pages/Checkout.jsx";
 import VerUsuarios from "./tienda/pages/VerUsuarios.jsx";
-import LoginComprador from "./tienda/pages/LoginComprador.jsx";
+
+// IMPORTANTE: Verifica que este archivo exista en ESTA carpeta
 import EstadoPago from "./tienda/pages/EstadoPago.jsx";
 
-/**
- * Componente App
- * * Componente principal de la aplicación que configura el enrutamiento.
- * Define todas las rutas disponibles en la aplicación utilizando React Router.
- * Cada ruta está asociada a un componente de página específico.
- * * Contextos proporcionados:
- * - AuthProvider: Gestiona la autenticación y el token JWT
- * - TiendaWrapper: Proporciona el contexto de tienda, detectando automáticamente el nombreTienda de la URL
- * * Rutas disponibles:
- * - "/" - Página principal (Home)
- * - "/login" - Página de inicio de sesión
- * - "/catalogo" - Catálogo de productos
- * - "/carrito" - Carrito de compras
- * - "/checkout" - Proceso de finalización de compra
- */
 function App() {
-  return (
-    // Router principal que habilita el enrutamiento en toda la aplicación
-    <Router>
-      {/* Provider de notificaciones: Gestiona notificaciones globales */}
-      <NotificationProvider>
-        {/* Provider de autenticación: Gestiona token JWT y usuario autenticado */}
-        <AuthProvider>
-          {/* Wrapper que proporciona el contexto de tienda a toda la aplicación */}
-          <TiendaWrapper>
-            {/* Provider del carrito: Gestiona el carrito de compras */}
-            <CarritoProvider>
-              {/* Contenedor de todas las rutas definidas */}
-              <Routes>
-                
-                {/* --- RUTAS PÚBLICAS Y DE SISTEMA (PRIORIDAD ALTA) --- */}
-                {/* Estas deben ir PRIMERO para evitar conflictos con rutas dinámicas */}
-                
-                {/* Ruta raíz: Landing page */}
-                <Route path="/" element={<Landing />} />
-                <Route path="/info/:pagina" element={<InfoPages />} />
-                
-                {/* Ruta para explorar tiendas */}
-                <Route path="/tiendas" element={<ExplorarTiendas />} />
-                
-                {/* Rutas de autenticación */}
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgot-password" element={<SolicitarRecuperacion />} />
-                <Route path="/reset-password" element={<RestablecerContrasenia />} />
+    return (
+        <Router>
+            <NotificationProvider>
+                <AuthProvider>
+                    <TiendaWrapper>
+                        <CarritoProvider>
+                            <Routes>
+                                {/* --- RUTAS PÚBLICAS Y DE SISTEMA --- */}
+                                <Route path="/" element={<Landing />} />
+                                <Route path="/info/:pagina" element={<InfoPages />} />
+                                <Route path="/tiendas" element={<ExplorarTiendas />} />
+                                
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/forgot-password" element={<SolicitarRecuperacion />} />
+                                <Route path="/reset-password" element={<RestablecerContrasenia />} />
 
-                {/* Rutas de Estado de Pago (Mercado Pago) */}
-                {/* Esto soluciona el problema de "volver a tienda" mostrando error */}
-                <Route path="/compra-exitosa" element={<EstadoPago estado="exito" />} />
-                <Route path="/compra-fallida" element={<EstadoPago estado="fallo" />} />
-                <Route path="/compra-pendiente" element={<EstadoPago estado="pendiente" />} />
+                                {/* --- RUTAS DE ESTADO DE PAGO (SOLUCIÓN A PRUEBA DE ERRORES) --- */}
+                                {/* Cubrimos los nombres en español */}
+                                <Route path="/compra-exitosa" element={<EstadoPago estado="exito" />} />
+                                <Route path="/compra-fallida" element={<EstadoPago estado="fallo" />} />
+                                <Route path="/compra-pendiente" element={<EstadoPago estado="pendiente" />} />
+                                
+                                {/* Cubrimos los nombres en inglés (por defecto de muchas configuraciones) */}
+                                <Route path="/success" element={<EstadoPago estado="exito" />} />
+                                <Route path="/failure" element={<EstadoPago estado="fallo" />} />
+                                <Route path="/pending" element={<EstadoPago estado="pendiente" />} />
 
-                {/* --- NUEVAS RUTAS: Panel de Comprador --- */}
-                <Route path="/perfil" element={
-                  <ProtectedRoute>
-                    <BuyerLayout />
-                  </ProtectedRoute>
-                }>
-                  {/* Por defecto ir a compras */}
-                  <Route index element={<BuyerCompras />} />
-                  <Route path="compras" element={<BuyerCompras />} />
-                  <Route path="seguridad" element={<PerfilSeguridad />} />
-                </Route>
+                                {/* --- PANEL DE COMPRADOR --- */}
+                                <Route path="/perfil" element={
+                                    <ProtectedRoute>
+                                        <BuyerLayout />
+                                    </ProtectedRoute>
+                                }>
+                                    <Route index element={<BuyerCompras />} />
+                                    <Route path="compras" element={<BuyerCompras />} />
+                                    <Route path="seguridad" element={<PerfilSeguridad />} />
+                                </Route>
 
-                {/* --- RUTAS DE ADMINISTRACIÓN --- */}
-                <Route path="/admin/:nombreTienda" element={
-                  <ProtectedRoute requireVendedor={true}>
-                    <AdminLayout />
-                  </ProtectedRoute>
-                }>
-                  <Route index element={<AdminDashboard />} />
-                  <Route path="dashboard" element={<AdminDashboard />} />
-                  <Route path="configuracion" element={<AdminConfiguracion />} />
-                  <Route path="productos/crear" element={<AdminCrearProductos />} />
-                  <Route path="productos/editar" element={<AdminEditarProductos />} />
-                  <Route path="pedidos" element={<AdminPedidos />} />
-                  <Route path="categorias" element={<AdminCategorias />} />
-                  <Route path="seguridad" element={<PerfilSeguridad />} />
-                </Route>
+                                {/* --- PANEL DE VENDEDOR (ADMIN) --- */}
+                                <Route path="/admin/:nombreTienda" element={
+                                    <ProtectedRoute requireVendedor={true}>
+                                        <AdminLayout />
+                                    </ProtectedRoute>
+                                }>
+                                    <Route index element={<AdminDashboard />} />
+                                    <Route path="dashboard" element={<AdminDashboard />} />
+                                    <Route path="configuracion" element={<AdminConfiguracion />} />
+                                    <Route path="productos/crear" element={<AdminCrearProductos />} />
+                                    <Route path="productos/editar" element={<AdminEditarProductos />} />
+                                    <Route path="pedidos" element={<AdminPedidos />} />
+                                    <Route path="categorias" element={<AdminCategorias />} />
+                                    <Route path="seguridad" element={<PerfilSeguridad />} />
+                                </Route>
 
-                {/* Ruta fallback admin */}
-                <Route path="/admin/*" element={
-                  <ProtectedRoute requireVendedor={true}>
-                    <AdminLayout />
-                  </ProtectedRoute>
-                }>
-                  <Route path="dashboard" element={<AdminDashboard />} />
-                  <Route path="seguridad" element={<PerfilSeguridad />} />
-                </Route>
+                                <Route path="/admin/*" element={
+                                    <ProtectedRoute requireVendedor={true}>
+                                        <AdminLayout />
+                                    </ProtectedRoute>
+                                }>
+                                    <Route path="dashboard" element={<AdminDashboard />} />
+                                    <Route path="seguridad" element={<PerfilSeguridad />} />
+                                </Route>
 
-                {/* --- RUTAS DE TIENDA --- */}
-                {/* Rutas de tienda con nombreTienda (para compradores) */}
-                <Route path="/tienda/:nombreTienda/home" element={<Home />} />
-                <Route path="/tienda/:nombreTienda/categoria/:categoriaNombre" element={<HomeCategoria />} />
-                <Route path="/tienda/:nombreTienda/login" element={<LoginComprador />} />
-                <Route path="/tienda/:nombreTienda/catalogo" element={<Catalogo />} />
-                <Route path="/tienda/:nombreTienda/carrito" element={<Carrito />} />
-                <Route path="/tienda/:nombreTienda/checkout" element={<Checkout />} />
-                <Route path="/tienda/:nombreTienda/usuarios" element={<VerUsuarios />} />
-
-              </Routes>
-            </CarritoProvider>
-          </TiendaWrapper>
-        </AuthProvider>
-      </NotificationProvider>
-    </Router>
-  );
+                                {/* --- RUTAS DE TIENDA --- */}
+                                <Route path="/tienda/:nombreTienda/home" element={<Home />} />
+                                <Route path="/tienda/:nombreTienda/categoria/:categoriaNombre" element={<HomeCategoria />} />
+                                <Route path="/tienda/:nombreTienda/login" element={<Login />} />
+                                <Route path="/tienda/:nombreTienda/catalogo" element={<Catalogo />} />
+                                <Route path="/tienda/:nombreTienda/carrito" element={<Carrito />} />
+                                <Route path="/tienda/:nombreTienda/checkout" element={<Checkout />} />
+                                <Route path="/tienda/:nombreTienda/usuarios" element={<VerUsuarios />} />
+                            </Routes>
+                        </CarritoProvider>
+                    </TiendaWrapper>
+                </AuthProvider>
+            </NotificationProvider>
+        </Router>
+    );
 }
 
 export default App;

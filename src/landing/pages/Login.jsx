@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { useAuth } from "../../tienda/contexts/AuthContext.jsx";
 import { useNotifications } from "../../contexts/NotificationContext.jsx";
-
 import Footer_Landing from "../components/Footer_Landing.jsx";
 import "../styles/Login.css";
 import "../../MainStyles.css";
 import "../styles/Landing.css";
-
 import { FaStore, FaShoppingBag } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { FaLock } from "react-icons/fa";
@@ -16,12 +14,12 @@ import { FaAddressCard } from "react-icons/fa6";
 
 /**
  * Componente Login Unificado
- * 
+ *
  * Componente único que maneja tanto login de vendedores como de compradores.
  * Detecta automáticamente el contexto según la ruta:
  * - /login -> vendedor (redirige a /admin/{nombreTienda})
  * - /tienda/:nombreTienda/login -> comprador (permanece en la tienda)
- * 
+ *
  * Mantiene el diseño y funcionalidad original del Login.jsx
  */
 function Login() {
@@ -30,36 +28,25 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const { nombreTienda } = useParams();
-    
+
     // Detectar automáticamente el tipo de usuario según la ruta
     const isComprador = location.pathname.includes('/tienda/') && nombreTienda;
     const userType = isComprador ? 'comprador' : 'vendedor';
-    
+
     const [isRegisterActive, setIsRegisterActive] = useState(false);
     const [showLoginPassword, setShowLoginPassword] = useState(false);
     const [showRegisterPassword, setShowRegisterPassword] = useState(false);
-    
+
     // Estados para el formulario de login
-    const [loginForm, setLoginForm] = useState({
-        dni: '',
-        email: '',
-        password: ''
-    });
+    const [loginForm, setLoginForm] = useState({ dni: '', email: '', password: '' });
     const [loginError, setLoginError] = useState(null);
     const [loginLoading, setLoginLoading] = useState(false);
-    
-    // Determinar si se debe mostrar el campo DNI en el login
-    const mostrarDniEnLogin = userType === 'vendedor';
-    
+
+    // MODIFICADO: Forzamos que siempre pida DNI, sea vendedor o comprador
+    const mostrarDniEnLogin = true; 
+
     // Estados para el formulario de registro
-    const [registerForm, setRegisterForm] = useState({
-        dni: '',
-        nombre: '',
-        apellido: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
+    const [registerForm, setRegisterForm] = useState({ dni: '', nombre: '', apellido: '', email: '', password: '', confirmPassword: '' });
     const [registerError, setRegisterError] = useState(null);
     const [registerSuccess, setRegisterSuccess] = useState(false);
     const [registerLoading, setRegisterLoading] = useState(false);
@@ -96,10 +83,7 @@ function Login() {
     // Manejador para los cambios en los inputs del login
     const handleLoginChange = (e) => {
         const { name, value } = e.target;
-        setLoginForm(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        setLoginForm(prev => ({ ...prev, [name]: value }));
     };
 
     // Manejador para el envío del formulario de login
@@ -107,11 +91,11 @@ function Login() {
         e.preventDefault();
         setLoginError(null);
         setLoginLoading(true);
-        
+
         try {
             // Validaciones básicas
             if (mostrarDniEnLogin) {
-                // Solo validar DNI si es vendedor
+                // Validar DNI
                 if (!loginForm.dni || !/^[0-9]{7,8}$/.test(loginForm.dni)) {
                     throw new Error("DNI inválido (debe tener entre 7 y 8 dígitos)");
                 }
@@ -128,27 +112,25 @@ function Login() {
                 setUserType(userType);
             }
             localStorage.setItem("auth_userType", userType);
-            
+
             // Preparar datos de login (solo email y password para la API)
-            const credencialesLogin = {
-                email: loginForm.email,
-                password: loginForm.password
-            };
+            const credencialesLogin = { email: loginForm.email, password: loginForm.password };
             
             // Llamada al contexto de autenticación
-            // Si es vendedor, pasar el DNI; si es comprador, no pasar DNI
+            // Pasamos el DNI si está habilitado
             const dniParaLogin = mostrarDniEnLogin ? parseInt(loginForm.dni) : null;
-            await login(credencialesLogin, dniParaLogin);
             
+            await login(credencialesLogin, dniParaLogin);
+
             // Mostrar notificación de éxito (persistirá entre navegaciones)
             showSuccess('Inicio de sesión exitoso', '¡Bienvenido de nuevo!');
-            
-            // Redirección según tipo de usuario
+
+            // Redirección según tipo de usuario (manejada por useEffect, pero forzamos por si acaso)
             setTimeout(() => {
                 if (userType === 'vendedor') {
                     // Para vendedores: redirigir al admin de su tienda
-                const tiendaGuardada = localStorage.getItem("auth_tienda");
-                if (tiendaGuardada) {
+                    const tiendaGuardada = localStorage.getItem("auth_tienda");
+                    if (tiendaGuardada) {
                         try {
                             const tienda = JSON.parse(tiendaGuardada);
                             const nombreTiendaAdmin = tienda.nombreUrl || tienda.nombreTienda;
@@ -165,15 +147,14 @@ function Login() {
                         localStorage.setItem("auth_tiendaActual", nombreTienda);
                         const returnPath = location.state?.from || `/tienda/${nombreTienda}/catalogo`;
                         navigate(returnPath, { replace: true });
-                } else {
+                    } else {
                         navigate("/", { replace: true });
                     }
                 }
             }, 500);
-            
+
         } catch (error) {
             console.error("Error en login:", error);
-            
             // Mensajes de error más específicos
             let errorMessage = "Error al iniciar sesión. Verifica tus credenciales.";
             
@@ -196,7 +177,6 @@ function Login() {
             }
             
             setLoginError(errorMessage);
-            
             // Mostrar notificación de error (persistirá entre navegaciones)
             showError('Error al iniciar sesión', errorMessage);
         } finally {
@@ -207,10 +187,7 @@ function Login() {
     // Manejador para los cambios en los inputs del registro
     const handleRegisterChange = (e) => {
         const { name, value } = e.target;
-        setRegisterForm(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        setRegisterForm(prev => ({ ...prev, [name]: value }));
     };
 
     // Manejador para el envío del formulario de registro
@@ -218,7 +195,7 @@ function Login() {
         e.preventDefault();
         setRegisterError(null);
         setRegisterLoading(true);
-        
+
         try {
             // Validaciones básicas
             if (!registerForm.dni || registerForm.dni.length < 7) {
@@ -233,7 +210,6 @@ function Login() {
             if (!registerForm.email || !registerForm.email.includes('@')) {
                 throw new Error("Email inválido");
             }
-            
             // Validación de contraseña: mínimo 6 caracteres, al menos una mayúscula y un número
             if (registerForm.password.length < 6) {
                 throw new Error("La contraseña debe tener al menos 6 caracteres");
@@ -244,17 +220,13 @@ function Login() {
             if (!/[0-9]/.test(registerForm.password)) {
                 throw new Error("La contraseña debe contener al menos un número");
             }
-            
             // Validar que las contraseñas coincidan
             if (registerForm.password !== registerForm.confirmPassword) {
                 throw new Error("Las contraseñas no coinciden");
             }
 
             // Convertir DNI a número
-            const datosRegistro = {
-                ...registerForm,
-                dni: parseInt(registerForm.dni)
-            };
+            const datosRegistro = { ...registerForm, dni: parseInt(registerForm.dni) };
 
             // Guardar tipo de usuario
             if (setUserType) {
@@ -268,28 +240,18 @@ function Login() {
 
             // Llamada al contexto de autenticación
             await registerUser(datosRegistro);
-            
+
             // Mostrar notificación de éxito (persistirá entre navegaciones)
             showSuccess(
-                'Cuenta creada con éxito',
-                userType === 'vendedor' 
-                    ? '¡Bienvenido! Redirigiendo al dashboard...' 
-                    : '¡Bienvenido! Redirigiendo...'
+                'Cuenta creada con éxito', 
+                userType === 'vendedor' ? '¡Bienvenido! Redirigiendo al dashboard...' : '¡Bienvenido! Redirigiendo...'
             );
-            
+
             // Redirección según tipo de usuario
             if (userType === 'vendedor') {
                 // Para vendedores: redirigir al dashboard después de 2 segundos
                 setRegisterSuccess(true);
-                setRegisterForm({
-                    dni: '',
-                    nombre: '',
-                    apellido: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                });
-                
+                setRegisterForm({ dni: '', nombre: '', apellido: '', email: '', password: '', confirmPassword: '' });
                 setTimeout(() => {
                     setIsRegisterActive(false);
                     setRegisterSuccess(false);
@@ -298,15 +260,7 @@ function Login() {
             } else if (userType === 'comprador') {
                 // Para compradores: redirigir al catálogo después de 2 segundos
                 setRegisterSuccess(true);
-                setRegisterForm({
-                    dni: '',
-                    nombre: '',
-                    apellido: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                });
-                
+                setRegisterForm({ dni: '', nombre: '', apellido: '', email: '', password: '', confirmPassword: '' });
                 setTimeout(() => {
                     setIsRegisterActive(false);
                     setRegisterSuccess(false);
@@ -318,29 +272,18 @@ function Login() {
                 }, 2000);
             } else {
                 // Por defecto: cambiar al formulario de login
-            setRegisterSuccess(true);
-            setRegisterForm({
-                dni: '',
-                nombre: '',
-                apellido: '',
-                email: '',
-                password: ''
-            });
-            
-            setTimeout(() => {
-                setIsRegisterActive(false);
-                setRegisterSuccess(false);
-            }, 2000);
+                setRegisterSuccess(true);
+                setRegisterForm({ dni: '', nombre: '', apellido: '', email: '', password: '' });
+                setTimeout(() => {
+                    setIsRegisterActive(false);
+                    setRegisterSuccess(false);
+                }, 2000);
             }
 
         } catch (error) {
             console.error("Error en registro:", error);
-            const errorMessage = error.response?.data?.message || 
-                error.message || 
-                "Error al registrar usuario";
-            
+            const errorMessage = error.response?.data?.message || error.message || "Error al registrar usuario";
             setRegisterError(errorMessage);
-            
             // Mostrar notificación de error (persistirá entre navegaciones)
             showError('Error al registrar', errorMessage);
         } finally {
@@ -352,29 +295,13 @@ function Login() {
     const getWelcomeText = () => {
         if (userType === 'comprador') {
             return {
-                register: {
-                    title: "¡Bienvenido!",
-                    message: `¿Aún no tienes una cuenta en ${nombreTienda || 'esta tienda'}? Regístrate y comienza a comprar.`,
-                    button: "Regístrate"
-                },
-                login: {
-                    title: "¡Nos alegra verte de nuevo!",
-                    message: "¿Ya tienes una cuenta?",
-                    button: "Inicia sesión"
-                }
+                register: { title: "¡Bienvenido!", message: `¿Aún no tienes una cuenta en ${nombreTienda || 'esta tienda'}? Regístrate y comienza a comprar.`, button: "Regístrate" },
+                login: { title: "¡Nos alegra verte de nuevo!", message: "¿Ya tienes una cuenta?", button: "Inicia sesión" }
             };
         } else {
             return {
-                register: {
-                    title: "¡Bienvenido!",
-                    message: "¿Aún no tienes una cuenta?",
-                    button: "Regístrate"
-                },
-                login: {
-                    title: "¡Nos alegra verte de nuevo!",
-                    message: "¿Ya tienes una cuenta?",
-                    button: "Inicia sesión"
-                }
+                register: { title: "¡Bienvenido!", message: "¿Aún no tienes una cuenta?", button: "Regístrate" },
+                login: { title: "¡Nos alegra verte de nuevo!", message: "¿Ya tienes una cuenta?", button: "Inicia sesión" }
             };
         }
     };
@@ -387,15 +314,13 @@ function Login() {
             <header className="landing-header">
                 <nav className="landing-nav">
                     <Link to="/" className="landing-logo-login">
-                        <FaStore />
-                        <h1>TradioGlobal</h1>
+                        <FaStore /> <h1>TradioGlobal</h1>
                     </Link>
                     <div className="landing-nav-actions">
                         <Link to="/info/acerca" className="landing-nav-link">Acerca de</Link>
                         <Link to="/info/ayuda" className="landing-nav-link">Soporte</Link>
                         <Link to="/tiendas" className="btn-primary-login">
-                            <FaShoppingBag />
-                            Explorar Tiendas
+                            <FaShoppingBag /> Explorar Tiendas
                         </Link>
                     </div>
                 </nav>
@@ -404,11 +329,13 @@ function Login() {
             {/* Contenedor principal del login */}
             <div className="main-login-landing">
                 <div className={`all-login-container ${isRegisterActive ? "active" : ""}`}>
-
+                    
                     {/* FORM LOGIN */}
                     <div className="login-box">
                         <form onSubmit={handleLogin}>
-                            <h2>Iniciar Sesión</h2>
+                            <h2>Iniciar Sesión {userType === 'comprador' && 'en Tienda'}</h2>
+                            
+                            {/* CAMPO DNI SIEMPRE VISIBLE */}
                             {mostrarDniEnLogin && (
                                 <div className="input-box">
                                     <span className="icon">
@@ -416,11 +343,11 @@ function Login() {
                                     </span>
                                     <input 
                                         type="text" 
-                                        name="dni"
-                                        value={loginForm.dni}
-                                        onChange={handleLoginChange}
+                                        name="dni" 
+                                        value={loginForm.dni} 
+                                        onChange={handleLoginChange} 
                                         pattern="^[0-9]{7,8}$" 
-                                        inputMode="numeric" 
+                                        inputMode="numeric"
                                         maxLength="8"
                                         title="Ingrese un DNI válido (solo números, entre 7 y 8 dígitos)"
                                         required 
@@ -428,40 +355,24 @@ function Login() {
                                     <label>DNI</label>
                                 </div>
                             )}
+
                             <div className="input-box">
                                 <span className="icon">
                                     <IoMail name="mail-outline" size={20}/>
                                 </span>
-                                <input 
-                                    type="email" 
-                                    name="email"
-                                    value={loginForm.email}
-                                    onChange={handleLoginChange}
-                                    required 
-                                />
+                                <input type="email" name="email" value={loginForm.email} onChange={handleLoginChange} required />
                                 <label>Email</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <FaLock name="lock-closed-outline" size={18}/>
                                 </span>
-                                <input 
-                                    type={showLoginPassword ? "text" : "password"}
-                                    name="password"
-                                    value={loginForm.password}
-                                    onChange={handleLoginChange}
-                                    required 
-                                />
+                                <input type={showLoginPassword ? "text" : "password"} name="password" value={loginForm.password} onChange={handleLoginChange} required />
                                 <label>Contraseña</label>
                             </div>
                             <div className="password-details">
                                 <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={showLoginPassword}
-                                        onChange={(e) => setShowLoginPassword(e.target.checked)}
-                                    />
-                                    Mostrar contraseña
+                                    <input type="checkbox" checked={showLoginPassword} onChange={(e) => setShowLoginPassword(e.target.checked)} /> Mostrar contraseña
                                 </label>
                             </div>
                             <div className="submit-button-contenedor">
@@ -474,9 +385,9 @@ function Login() {
                                     </div>
                                 )}
                             </div>
-                                <Link to="/forgot-password" className="password-forgot">
+                            <Link to="/forgot-password" className="password-forgot">
                                 ¿Olvidaste tu contraseña?
-                                </Link>
+                            </Link>
                         </form>
                     </div>
 
@@ -488,92 +399,47 @@ function Login() {
                                 <span className="icon">
                                     <FaAddressCard name="dni-outline" size={20}/>
                                 </span>
-                                <input 
-                                    type="text" 
-                                    name="dni"
-                                    value={registerForm.dni}
-                                    onChange={handleRegisterChange}
-                                    pattern="^[0-9]{7,8}$" 
-                                    inputMode="numeric" 
-                                    maxLength="8"
-                                    title="Ingrese un DNI válido (solo números, entre 7 y 8 dígitos)"
-                                    required 
-                                    />
+                                <input type="text" name="dni" value={registerForm.dni} onChange={handleRegisterChange} pattern="^[0-9]{7,8}$" inputMode="numeric" maxLength="8" title="Ingrese un DNI válido (solo números, entre 7 y 8 dígitos)" required />
                                 <label>DNI</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <IoPerson name="mail-outline" size={20}/>
                                 </span>
-                                <input 
-                                    type="text" 
-                                    name="nombre"
-                                    value={registerForm.nombre}
-                                    onChange={handleRegisterChange}
-                                    required
-                                    />
+                                <input type="text" name="nombre" value={registerForm.nombre} onChange={handleRegisterChange} required />
                                 <label>Nombre</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <IoPerson name="mail-outline" size={20}/>
                                 </span>
-                                <input 
-                                    type="text" 
-                                    name="apellido"
-                                    value={registerForm.apellido}
-                                    onChange={handleRegisterChange}
-                                    required
-                                    />
+                                <input type="text" name="apellido" value={registerForm.apellido} onChange={handleRegisterChange} required />
                                 <label>Apellido</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <IoMail name="mail-outline" size={20}/>
                                 </span>
-                                <input 
-                                    type="email" 
-                                    name="email"
-                                    value={registerForm.email}
-                                    onChange={handleRegisterChange}
-                                    required 
-                                    />
+                                <input type="email" name="email" value={registerForm.email} onChange={handleRegisterChange} required />
                                 <label>Email</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <FaLock name="lock-closed-outline" size={18}/>
                                 </span>
-                                <input 
-                                    type={showRegisterPassword ? "text" : "password"}
-                                    name="password"
-                                    value={registerForm.password}
-                                    onChange={handleRegisterChange}
-                                    required 
-                                    />
+                                <input type={showRegisterPassword ? "text" : "password"} name="password" value={registerForm.password} onChange={handleRegisterChange} required />
                                 <label>Contraseña</label>
                             </div>
                             <div className="input-box">
                                 <span className="icon">
                                     <FaLock name="lock-closed-outline" size={18}/>
                                 </span>
-                                <input 
-                                    type={showRegisterPassword ? "text" : "password"}
-                                    name="confirmPassword"
-                                    value={registerForm.confirmPassword}
-                                    onChange={handleRegisterChange}
-                                    required 
-                                    />
+                                <input type={showRegisterPassword ? "text" : "password"} name="confirmPassword" value={registerForm.confirmPassword} onChange={handleRegisterChange} required />
                                 <label>Confirmar Contraseña</label>
                             </div>
                             <div className="password-details">
                                 <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={showRegisterPassword}
-                                        onChange={(e) => setShowRegisterPassword(e.target.checked)}
-                                        />
-                                    Mostrar contraseña
+                                    <input type="checkbox" checked={showRegisterPassword} onChange={(e) => setShowRegisterPassword(e.target.checked)} /> Mostrar contraseña
                                 </label>
                             </div>
                             <small style={{ color: '#666', fontSize: '0.85rem', marginTop: '-10px', marginBottom: '10px', display: 'block' }}>
@@ -583,17 +449,16 @@ function Login() {
                                 <button type="submit" disabled={registerLoading}>
                                     {registerLoading ? "Registrando..." : "Registrarse"}
                                 </button>
-
-                            {registerError && (
-                                <div className="error-message" style={{ color: 'red', marginTop: '10px', textAlign: 'center' }}>
-                                    {registerError}
-                                </div>
-                            )}
-                            {registerSuccess && (
-                                <div className="success-message" style={{ color: 'green', marginTop: '10px', textAlign: 'center' }}>
+                                {registerError && (
+                                    <div className="error-message" style={{ color: 'red', marginTop: '10px', textAlign: 'center' }}>
+                                        {registerError}
+                                    </div>
+                                )}
+                                {registerSuccess && (
+                                    <div className="success-message" style={{ color: 'green', marginTop: '10px', textAlign: 'center' }}>
                                         ¡Registro exitoso! {userType === 'vendedor' ? 'Redirigiendo al dashboard...' : 'Redirigiendo...'}
-                                </div>
-                            )}
+                                    </div>
+                                )}
                             </div>
                         </form>
                     </div>
@@ -608,6 +473,7 @@ function Login() {
                                 {welcomeTexts.register.button}
                             </button>
                         </div>
+                        
                         {/* Panel para el login */}
                         <div className={`welcome-panel welcome-login ${isRegisterActive ? "visible" : "hidden"}`} aria-hidden={!isRegisterActive}>
                             <h2>{welcomeTexts.login.title}</h2>
@@ -624,11 +490,7 @@ function Login() {
                     <p className="mobile-toggle-text">
                         {isRegisterActive ? welcomeTexts.login.message : welcomeTexts.register.message}
                     </p>
-                    <button 
-                        type="button" 
-                        className="mobile-toggle-btn"
-                        onClick={() => setIsRegisterActive(!isRegisterActive)}
-                    >
+                    <button type="button" className="mobile-toggle-btn" onClick={() => setIsRegisterActive(!isRegisterActive)} >
                         {isRegisterActive ? welcomeTexts.login.button : welcomeTexts.register.button}
                     </button>
                 </div>

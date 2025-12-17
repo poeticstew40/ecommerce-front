@@ -1,14 +1,15 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../tienda/contexts/AuthContext";
 // Importamos los estilos del admin para mantener la consistencia visual
-import "../../admin/styles/AdminLayout.css"; 
+import "../../admin/styles/AdminLayout.css";
 
 /**
  * Layout del panel del comprador (USUARIOS SIN TIENDA)
  * Ubicación: src/landing/components/BuyerLayout.jsx
  */
 function BuyerLayout() {
-    const { usuario, logout } = useAuth();
+    // AÑADIDO: traemos tiendaUsuario del contexto
+    const { usuario, logout, tiendaUsuario } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -27,14 +28,13 @@ function BuyerLayout() {
                 </div>
 
                 <nav className="admin-sidebar-nav">
-                    <Link 
+                    <Link
                         to="/perfil/compras"
                         className="admin-sidebar-link"
                     >
-                        🛍️ Mis Compras
+                        🛒 Mis Compras
                     </Link>
-             
-                    <Link 
+                    <Link
                         to="/perfil/seguridad"
                         className="admin-sidebar-link"
                     >
@@ -44,13 +44,26 @@ function BuyerLayout() {
                     {/* Separador */}
                     <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '15px 20px' }}></div>
 
-                    <Link 
-                        to="/admin/configuracion"
-                        className="admin-sidebar-link"
-                        style={{ color: '#60a5fa' }}
-                    >
-                        🚀 ¡Crear mi Tienda!
-                    </Link>
+                    {/* LÓGICA MODIFICADA: Botón dinámico */}
+                    {tiendaUsuario ? (
+                        /* Si YA TIENE TIENDA: Botón para ir al panel de vendedor */
+                        <Link
+                            to={`/admin/${tiendaUsuario.nombreUrl || 'dashboard'}/dashboard`}
+                            className="admin-sidebar-link"
+                            style={{ color: '#4ade80' }} // Un verde claro para destacar
+                        >
+                            🏪 Ir a mi Tienda
+                        </Link>
+                    ) : (
+                        /* Si NO TIENE TIENDA: Botón para crearla */
+                        <Link
+                            to="/admin/configuracion"
+                            className="admin-sidebar-link"
+                            style={{ color: '#60a5fa' }}
+                        >
+                            🚀 ¡Crear mi Tienda!
+                        </Link>
+                    )}
                 </nav>
 
                 <div className="admin-sidebar-footer">
@@ -61,20 +74,24 @@ function BuyerLayout() {
                                     {usuario.nombre} {usuario.apellido}
                                 </span>
                                 {usuario.emailVerificado !== undefined && (
-                                    <span 
-                                        className={`admin-sidebar-footer-user-icon ${usuario.emailVerificado ? "verified" : "unverified"}`}
+                                    <span
+                                        className={`admin-sidebar-footer-user-icon ${usuario.emailVerificado ?
+                                            "verified" : "unverified"}`}
                                         title={usuario.emailVerificado ? "Email Verificado" : "Email No Verificado"}
                                     >
-                                        {usuario.emailVerificado ? "✓" : "⚠️"}
+                                        {usuario.emailVerificado ?
+                                            "✓" : "⚠️"}
                                     </span>
                                 )}
                             </div>
+
                             <button
                                 onClick={handleLogout}
                                 className="admin-sidebar-footer-logout"
                             >
                                 Cerrar Sesión
                             </button>
+
                             <button
                                 onClick={() => navigate("/")}
                                 className="btn-landing-link"
@@ -93,8 +110,8 @@ function BuyerLayout() {
                     <h1 className="admin-header-title">
                         Panel de Usuario
                     </h1>
-                    <Link 
-                        to="/tiendas" 
+                    <Link
+                        to="/tiendas"
                         className="btn-tienda-link"
                     >
                         Ir a Comprar
