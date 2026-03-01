@@ -18,7 +18,7 @@ function normalizeBaseURL(url) {
 }
 
 // URL de producción por defecto
-const PROD_API_URL = 'https://ecommerce-back-phi.vercel.app/';
+const PROD_API_URL = 'https://ecommerce-back-2uxy.onrender.com/';
 
 let baseURL;
 if (import.meta.env.VITE_API_URL) {
