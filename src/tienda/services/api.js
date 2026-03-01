@@ -18,7 +18,7 @@ function normalizeBaseURL(url) {
 }
 
 // URL de producción por defecto
-const PROD_API_URL = 'https://ecommerce-back-1018928649112.us-central1.run.app/';
+const PROD_API_URL = 'https://clear-celestina-poeticstew40-82115c5d.koyeb.app/';
 
 let baseURL;
 if (import.meta.env.VITE_API_URL) {
